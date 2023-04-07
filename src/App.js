@@ -5,6 +5,7 @@ import {Routes, Route} from "react-router";
 import HelloWorld from "./hello";
 import HomePage from "./HomePage";
 import Profile from "./profile";
+import Search from "./Search";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
               <Route path="/" element={<HomePage/>}/>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/search" element={<Search/>}/>
               {/*<Route path="/*" element={<Labs/>}/>*/}
              <Route path="/hello" element={<HelloWorld/>}/>
           </Routes>
