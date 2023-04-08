@@ -4,15 +4,18 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import YelpItem from "./yelp-item";
 import {useParams } from 'react-router-dom';
-import SearchList from "./search-list";
+import SearchBar from "./search-bar";
 
-function SearchCriteria() {
+/*
+    * This component is empty search page. Will redirect to the search criteria page after click search.
+ */
+function Search() {
     return (
         <div>
             <Nav/>
             <h1>Search</h1>
-            <SearchList/>
+            <SearchBar/>
         </div>
     );
 }
-export default SearchCriteria;
+export default Search;

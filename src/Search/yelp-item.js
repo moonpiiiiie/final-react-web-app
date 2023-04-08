@@ -1,5 +1,8 @@
 import React from "react";
 
+/*
+    This component is used to display a single yelp restraunt search result.
+ */
 const YelpItem = (
     {
         result = {

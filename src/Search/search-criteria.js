@@ -6,6 +6,9 @@ import YelpItem from "./yelp-item";
 import {useParams } from 'react-router-dom';
 import SearchList from "./search-list";
 
+/*
+    * This component is used to display the yelp search results.
+ */
 function SearchCriteria() {
     return (
         <div>

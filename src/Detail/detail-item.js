@@ -1,5 +1,8 @@
 import React from "react";
 
+/*
+    This component is used to display the details of a single restaurant.
+ */
 const DetailItem = (
     {
         result = {
