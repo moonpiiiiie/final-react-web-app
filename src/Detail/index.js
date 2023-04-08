@@ -2,17 +2,17 @@ import axios from "axios";
 import Nav from "../nav";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import YelpItem from "./yelp-item";
+import DetailItem from "./detail-item";
+import DetailList from "./detail-list";
 import {useParams } from 'react-router-dom';
-import SearchList from "./search-list";
 
-function SearchCriteria() {
+function Detail() {
     return (
         <div>
             <Nav/>
-            <h1>Search</h1>
-            <SearchList/>
+            <h1>Detail</h1>
+            <DetailList/>
         </div>
     );
 }
-export default SearchCriteria;
+export default Detail;
