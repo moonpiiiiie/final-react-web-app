@@ -6,44 +6,53 @@ import {useNavigate} from "react-router";
 
 
 function LoginScreen() {
-    const {currentUser} = useSelector(state => state.users);
-    console.log(currentUser);
+    const { currentUser } = useSelector((state) => state.users);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const login = () => {
         try {
-            dispatch(loginThunk(username, password));
-            // navigate("/profile");
-        } catch (e) {
-            console.log(e);
+            dispatch(loginThunk({ username, password }));
+            navigate("/profile");
+        } catch (err) {
+            console.log(err);
         }
-    }
+    };
     return (
         <div>
             <Nav/>
             <h1>Login</h1>
             <div className="form-group">
-                <label >Username</label>
-                <input type="text"
-                       className="form-control"
-                       placeholder="Enter username"
-                       value={username}
-                       onChange={(event) => setUsername(event.target.value)}/>
-
-                <label >Password</label>
-                <input type="password"
-                       className="form-control"
-                       placeholder="Enter password"
-                       value={password}
-                       onChange={(event) => setPassword(event.target.value)}/>
+                <label>Username</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    value={username}
+                    onChange={(e) => {
+                        setUsername(e.target.value);
+                    }}
+                />
             </div>
-            <button onClick={login} className="btn btn-primary">Login</button>
+            <div className="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => {
+                        setPassword(e.target.value);
+                    }}
+                />
+            </div>
+            <button onClick={login} className="btn btn-primary">
+                Login
+            </button>
             <div>
                 {currentUser && (
                     <div>
-                        <h1>Logged in as {currentUser.username}</h1>
+                        <h2>{currentUser.username}</h2>
+                        <h2>{currentUser.password}</h2>
                     </div>
                 )}
             </div>

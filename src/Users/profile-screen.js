@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { profileThunk, logoutThunk} from "./users-thunks";
 import {useNavigate} from "react-router";
+import Nav from "../nav";
 
 function ProfileScreen() {
     const { currentUser } = useSelector(state => state.users);
@@ -12,6 +13,7 @@ function ProfileScreen() {
     }, []);
     return (
         <div>
+            <Nav/>
             <h1>Profile Screen</h1>
             <div>
                 {currentUser && (
