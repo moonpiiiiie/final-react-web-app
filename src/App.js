@@ -10,6 +10,7 @@ import AdminScreen from "./Users/admin-screen";
 import LoginScreen from "./Users/login-screen";
 import {Provider} from "react-redux";
 import store from "./Users";
+import RegisterScreen from "./Users/register-screen";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/login" element={<LoginScreen/>}/>
               <Route path="/profile" element={<ProfileScreen/>}/>
               <Route path="/admin" element={<AdminScreen/>}/>
+              <Route path="/register" element={<RegisterScreen/>}/>
           </Routes>
         </div>
       </BrowserRouter>
