@@ -12,12 +12,14 @@ const DetailItem = (
             rating: "No Rating",
             image_url: "No Image",
             price: "No Price",
+            id: "No Id",
         }
     }
 ) => {
     return(
             <li className="list-group-item">
                 <div> Name: {result.name}</div>
+                <div> Id: {result.id}</div>
                 <div> Phone: {result.phone}</div>
                 <div> Rating: {result.rating}</div>
                 <div> Price: {result.price}</div>

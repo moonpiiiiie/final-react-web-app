@@ -4,6 +4,8 @@ import {useDispatch} from "react-redux";
 import DetailItem from "./detail-item";
 import {useParams } from 'react-router-dom';
 
+const DETAIL_URL = "http://localhost:4000/api/detail/";
+
 /*
     * This component is used to display restraunt.
  */
@@ -14,8 +16,7 @@ function DetailList() {
     useEffect(() => {
         const asyncData = async () => {
             // This is the node API url for detail restraurant informations
-            const response = await axios('http://localhost:4000/api/detail/' + id);
-            console.log(response);
+            const response = await axios(DETAIL_URL + id);
             setResult(response.data);
         };
         // make sure we only run asyncData() once

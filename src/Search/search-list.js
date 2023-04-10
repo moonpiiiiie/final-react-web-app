@@ -3,8 +3,9 @@ import Nav from "../nav";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import YelpItem from "./yelp-item";
-import {useParams } from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 
+const SEARCH_URL = "http://localhost:4000/api/search/";
 /*
     * This component is used to display the search results. 
     * Also support search function if user wants to search again.
@@ -12,12 +13,14 @@ import {useParams } from 'react-router-dom';
 function SearchList() {
     // get the search context and zip code from the url
     const {searchContext, zip} = useParams();
+
+    const navigate = useNavigate();
    
     // set the search context and zip code to the state
     const [search, setSearch] = useState(searchContext);
     const [zipCode, setZip] = useState(zip);
     const [results, setResults] = useState([]);
-    const [website, setWebsite] = useState('http://localhost:3000/search/' + zipCode + '/' + search);
+    const [isRunEffect, setIsRunEffect] = useState(false);
 
     async function searchYelp() {
         if(search === "" || zipCode === "") {
@@ -25,23 +28,25 @@ function SearchList() {
             return;
         }
 
-        // when user click search button, it will redirect to the search page
-        setWebsite('http://localhost:3000/search/' + zipCode + '/' + search);
-
+        // when user click search button, it will redirect to the search page and reload the page
+        navigate(`/search/${zipCode}/${search}`);
+        window.location.reload();
     }
 
     useEffect(() => {
         const asyncData = async () => {
+            setIsRunEffect(true);
             try{
                 // This is the node API url for search restraurant informations
-                const response = await axios('http://localhost:4000/api/search/' + zipCode + '/' + search);
+                const response = await axios(SEARCH_URL + zipCode + '/' + search);
+                console.log(response);
                 setResults(response.data);
             }catch (e) {
                 console.log(e);
             }
         };
         // make sure we only run asyncData() once
-        if(results.length === 0){
+        if(isRunEffect == false){
             asyncData();
         }
     });
@@ -60,9 +65,7 @@ function SearchList() {
                 onChange={(e) => setZip(e.target.value)}
                 placeholder={zipCode}
             />
-            <a href={website}>
                 <button onClick={searchYelp}>Search</button>
-            </a>
 
             <ul className="list-group">
                 {

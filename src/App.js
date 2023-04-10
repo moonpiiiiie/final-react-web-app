@@ -6,7 +6,6 @@ import HelloWorld from "./hello";
 import HomePage from "./HomePage";
 import Profile from "./profile";
 import Search from "./Search";
-import SearchCriteria from "./Search/search-criteria";
 import Detail from "./Detail";
 
 function App() {
@@ -15,10 +14,9 @@ function App() {
             <div className="container">
               <Routes>
                   <Route path="/" element={<HomePage/>}/>
-                  <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/search" element={<Search/>}/>
-                  <Route path="/search/:zip/:searchContext" element={<SearchCriteria/>}/>
+                  <Route path="/profile" element={<Profile/>}/>}
                   <Route path="/detail/:id" element={<Detail/>}/>
+                  <Route path="/search/*" element={<Search/>}/>
                   {/*<Route path="/*" element={<Labs/>}/>*/}
                  <Route path="/hello" element={<HelloWorld/>}/>
               </Routes>
