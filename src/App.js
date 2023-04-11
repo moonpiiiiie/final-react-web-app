@@ -12,6 +12,8 @@ import {Provider} from "react-redux";
 import store from "./Users";
 import RegisterScreen from "./Users/register-screen";
 import Detail from "./Detail";
+import React from "react";
+import Nav from "./nav";
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
       <Provider store={store}>
       <BrowserRouter>
         <div className="container">
+        <Nav/>
           <Routes>
               <Route path="/" element={<HomePage/>}/>
               <Route path="/search/*" element={<Search/>}/>

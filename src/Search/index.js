@@ -1,5 +1,4 @@
 import axios from "axios";
-import Nav from "../nav";
 import React, {useEffect, useState} from "react";
 import {Routes, Route} from "react-router";
 import {useDispatch} from "react-redux";
@@ -13,7 +12,6 @@ import SearchList from "./search-list";
 function Search() {
     return (
         <div>
-            <Nav/>
             <h1>Search</h1>
             <Routes>
                 <Route path="/" element={<SearchList/>}/>
