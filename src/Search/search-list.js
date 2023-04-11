@@ -57,13 +57,14 @@ function SearchList() {
                 type = "text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder={search}
+                placeholder={"restraunt name"}
+
             />
             <input
                 type = "text"
                 value={zipCode}
                 onChange={(e) => setZip(e.target.value)}
-                placeholder={zipCode}
+                placeholder={"zip code/city name"}
             />
                 <button onClick={searchYelp}>Search</button>
 

@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import DetailItem from "./detail-item";
 import {useParams } from 'react-router-dom';
+import {profileThunk} from "../Users/users-thunks";
 
 const DETAIL_URL = "http://localhost:4000/api/detail/";
 
@@ -12,6 +13,8 @@ const DETAIL_URL = "http://localhost:4000/api/detail/";
 function DetailList() {
     const {id} = useParams();
     const [result, setResult] = useState([]);
+    const { currentUser } = useSelector(state => state.users);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const asyncData = async () => {
@@ -21,12 +24,16 @@ function DetailList() {
         };
         // make sure we only run asyncData() once
         if(result.length === 0){
+            dispatch(profileThunk());
             asyncData();
         }
     });
     return (
 
         <ul className="list-group">
+            {
+                currentUser && currentUser.username
+            }
             {
                 result && <DetailItem result={result}/>
             }

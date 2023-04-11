@@ -12,8 +12,8 @@ const DetailItem = (
             rating: "No Rating",
             image_url: "No Image",
             price: "No Price",
-            id: "No Id",
         }
+
     }
 ) => {
     return(
