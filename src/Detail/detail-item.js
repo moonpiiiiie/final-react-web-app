@@ -17,14 +17,19 @@ const DetailItem = (
     }
 ) => {
     return(
-            <li className="list-group-item">
-                <div> Name: {result.name}</div>
-                <div> Id: {result.id}</div>
-                <div> Phone: {result.phone}</div>
-                <div> Rating: {result.rating}</div>
-                <div> Price: {result.price}</div>
-                <img src={result.image_url} width={500} height={500}/>
-            </li>
+        <>
+            <h1> {result.name}</h1>
+                <div className="row">
+                    <div className='col-5'>
+                        <img className="" src={result.image_url} width={300} height={300}/>
+                    </div>
+                    <div className='col-5'>
+                        <div> Phone: {result.phone}</div>
+                        <div> Rating: {result.rating}</div>
+                        <div> Price: {result.price}</div>
+                    </div>
+                </div>
+        </>
     )
 }
 export default DetailItem;

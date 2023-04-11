@@ -14,6 +14,7 @@ function SearchOwner({setRestaurantID, setRestaurantName}) {
     const [search, setSearch] = useState("");
     const [zipCode, setZip] = useState("");
     const [results, setResults] = useState([]);
+    const [selected, setSelected] = useState("");
 
     async function searchYelp() {
         if(search === "" || zipCode === "") {
@@ -32,22 +33,25 @@ function SearchOwner({setRestaurantID, setRestaurantName}) {
     }
     return (
         <div>
+            <div className="input-group">
+                <input
+                    className={"form-control"}
+                    type="search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder={"restraunt name"}
 
-            <input
-                type = "text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder={search}
-            />
-            <input
-                type = "text"
-                value={zipCode}
-                onChange={(e) => setZip(e.target.value)}
-                placeholder={zipCode}
-            />
-
-            <button onClick={searchYelp}>Search</button>
-
+                />
+                <input
+                    className={"form-control"}
+                    type = "text"
+                    value={zipCode}
+                    onChange={(e) => setZip(e.target.value)}
+                    placeholder={"zip code/city name"}
+                />
+                <button type="button" className="btn btn-outline-primary" onClick={searchYelp}>
+                    Search</button>
+            </div>
             <ul className="list-group">
                 {
                     results && results.map(result =>
@@ -56,10 +60,14 @@ function SearchOwner({setRestaurantID, setRestaurantName}) {
                                                    <div> Phone: {result.phone}</div>
                                                    <div> Rating: {result.rating}</div>
                                                    <img src={result.image_url} height={300} width={300}/>
-                                                   <button onClick={() => {
-                                                       setRestaurantID(result.id)
-                                                       setRestaurantName(result.name)
-                                                   }}>Select</button>
+
+                                                   <button
+                                                       className="btn btn-outline-primary ms-2"
+                                                       onClick={() => {
+                                                           setRestaurantID(result.id)
+                                                           setRestaurantName(result.name)
+                                                           setSelected(result.id)
+                                                   }}>{selected===result.id? "Selected":"Select"}</button>
                                                </li>
                             )
                 }

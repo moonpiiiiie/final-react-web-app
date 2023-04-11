@@ -2,7 +2,7 @@ import axios from "axios";
 import Nav from "../nav";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import YelpItem from "./yelp-item";
+import SearchItem from "./search-item";
 import {useParams, useNavigate} from 'react-router-dom';
 
 const SEARCH_URL = "http://localhost:4000/api/search/";
@@ -52,28 +52,33 @@ function SearchList() {
     });
 
     return (
-        <div>
+        <div >
+            <div className="input-group">
             <input
-                type = "text"
+                className={"form-control"}
+                type="search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={"restraunt name"}
 
             />
             <input
+                className={"form-control"}
                 type = "text"
                 value={zipCode}
                 onChange={(e) => setZip(e.target.value)}
                 placeholder={"zip code/city name"}
             />
-                <button onClick={searchYelp}>Search</button>
+                <button type="button" className="btn btn-outline-primary" onClick={searchYelp}>
+                    Search</button>
+            </div>
 
-            <ul className="list-group">
+            <div className="row">
                 {
                     results && results.map(result =>
-                                               <YelpItem result={result}/>)
+                                               <SearchItem result={result}/>)
                 }
-            </ul>
+            </div>
 
         </div>
     );

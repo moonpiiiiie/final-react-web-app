@@ -3,7 +3,7 @@ import React from "react";
 /*
     This component is used to display a single yelp restraunt search result.
  */
-const YelpItem = (
+const SearchItem = (
     {
         result = {
             name: "No Name",
@@ -15,14 +15,14 @@ const YelpItem = (
     }
 ) => {
         return(
-                <li className="list-group-item">
-                    <a href={'http://localhost:3000/detail/' + result.id}>
-                        <div> Name: {result.name}</div>
+                <div className="col mt-2">
+                    <a  href={'http://localhost:3000/detail/' + result.id}>
+                        <img className="" src={result.image_url} width={300} height={300}/>
+                        <h5 className=""> Name: {result.name}</h5>
                         <div> Phone: {result.phone}</div>
                         <div> Rating: {result.rating}</div>
-                        <img src={result.image_url} height={300} width={300}/>
                     </a>
-                </li>
+                </div>
         )
     }
-export default YelpItem;
+export default SearchItem;

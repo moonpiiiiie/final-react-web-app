@@ -125,7 +125,7 @@ function RegisterScreen() {
             {console.log(restaurantID)}
             {console.log(restaurantName)}
 
-            <button onClick={register} className="btn btn-primary">
+            <button onClick={register} className="btn btn-primary mt-2">
                 Register
             </button>
         </div>
