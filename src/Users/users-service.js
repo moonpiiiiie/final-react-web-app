@@ -55,5 +55,5 @@ export const profile = () => {
     // return axios.get(`${USERS_API_URL}/profile`);
 
     // for multi user login, use api to identify the current user
-    return axios.get(`${USERS_API_URL}/profile`);
+    return api.get(`${USERS_API_URL}/profile`);
 };
