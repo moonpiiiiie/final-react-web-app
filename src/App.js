@@ -4,24 +4,34 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import HelloWorld from "./hello";
 import HomePage from "./HomePage";
-import Profile from "./profile";
 import Search from "./Search";
+import ProfileScreen from "./Users/profile-screen";
+import AdminScreen from "./Users/admin-screen";
+import LoginScreen from "./Users/login-screen";
+import {Provider} from "react-redux";
+import store from "./Users";
+import RegisterScreen from "./Users/register-screen";
 import Detail from "./Detail";
+
 
 function App() {
   return (
-          <BrowserRouter>
-            <div className="container">
-              <Routes>
-                  <Route path="/" element={<HomePage/>}/>
-                  <Route path="/profile" element={<Profile/>}/>}
-                  <Route path="/detail/:id" element={<Detail/>}/>
-                  <Route path="/search/*" element={<Search/>}/>
-                  {/*<Route path="/*" element={<Labs/>}/>*/}
-                 <Route path="/hello" element={<HelloWorld/>}/>
-              </Routes>
-            </div>
-          </BrowserRouter>
+      <Provider store={store}>
+      <BrowserRouter>
+        <div className="container">
+          <Routes>
+              <Route path="/" element={<HomePage/>}/>
+              <Route path="/search/*" element={<Search/>}/>
+              <Route path="/detail/:id" element={<Detail/>}/>
+              <Route path="/hello" element={<HelloWorld/>}/>
+              <Route path="/login" element={<LoginScreen/>}/>
+              <Route path="/profile" element={<ProfileScreen/>}/>
+              <Route path="/admin" element={<AdminScreen/>}/>
+              <Route path="/register" element={<RegisterScreen/>}/>
+          </Routes>
+        </div>
+      </BrowserRouter>
+      </Provider>
   );
 }
 
