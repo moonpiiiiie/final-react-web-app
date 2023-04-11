@@ -3,6 +3,7 @@ import Nav from "../nav";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import {useNavigate} from "react-router";
+import SearchOwner from "./search-owner";
 
 
 function RegisterScreen() {
@@ -13,6 +14,7 @@ function RegisterScreen() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
+    const [restaurantID, setRestaurantD] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const register = () => {
@@ -117,11 +119,10 @@ function RegisterScreen() {
             </div>
 
             {role === "OWNER" && (
-                <div>
-                    hello
-                </div>
+                <SearchOwner setRestaurantD={setRestaurantD}/>
             )}
 
+            <h1>Restaurant ID: {restaurantID}</h1>
 
             <button onClick={register} className="btn btn-primary">
                 Register
