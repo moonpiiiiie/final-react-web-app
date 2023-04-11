@@ -17,7 +17,6 @@ function AdminScreen() {
     }, []);
     return (
         <div>
-            <Nav/>
             <h1>Admin</h1>
             <ul className="list-group">
                 {users && users.map(user => {

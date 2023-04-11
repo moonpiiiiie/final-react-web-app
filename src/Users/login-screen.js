@@ -21,7 +21,6 @@ function LoginScreen() {
     };
     return (
         <div>
-            <Nav/>
             <h1>Login</h1>
             <div className="form-group">
                 <label>Username</label>

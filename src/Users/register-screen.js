@@ -26,7 +26,6 @@ function RegisterScreen() {
     console.log(role)
     return (
         <div>
-            <Nav/>
             <h1>Register</h1>
             <div className="form-group">
                 <label>Username</label>

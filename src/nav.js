@@ -21,13 +21,13 @@ function Nav() {
             {/*<a className="navbar-brand" href="#">Dog-Friendly Restaurants</a>*/}
             {
                 !currentUser && (
-                    <a className="navbar-brand" href="#">Dog-Friendly Restaurants</a>
+                    <a className="navbar-brand">Dog-Friendly Restaurants</a>
                 )
             }
 
             {
                 currentUser && (
-                    <a className="navbar-brand" href="#">Hi {currentUser.username}</a>
+                    <a className="navbar-brand">Hi {currentUser.username}</a>
                 )
             }
 

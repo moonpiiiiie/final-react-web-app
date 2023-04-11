@@ -13,7 +13,6 @@ function ProfileScreen() {
     }, []);
     return (
         <div>
-            <Nav/>
             <div>
                 {currentUser && (
                     <div>
