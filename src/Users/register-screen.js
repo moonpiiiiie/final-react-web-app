@@ -14,18 +14,18 @@ function RegisterScreen() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
-    const [restaurantID, setRestaurantD] = useState("");
+    const [restaurantID, setRestaurantID] = useState("");
+    const [restaurantName, setRestaurantName] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const register = () => {
         try {
-            dispatch(registerThunk({ username, password, firstName,lastName, email, role }));
+            dispatch(registerThunk({ username, password, firstName,lastName, email, role, restaurantID, restaurantName }));
             navigate("/profile");
         } catch (err) {
             console.log(err);
         }
     };
-    console.log(role)
     return (
         <div>
             <h1>Register</h1>
@@ -119,10 +119,11 @@ function RegisterScreen() {
             </div>
 
             {role === "OWNER" && (
-                <SearchOwner setRestaurantD={setRestaurantD}/>
+                <SearchOwner setRestaurantID={setRestaurantID} setRestaurantName={setRestaurantName} />
             )}
 
-            <h1>Restaurant ID: {restaurantID}</h1>
+            {console.log(restaurantID)}
+            {console.log(restaurantName)}
 
             <button onClick={register} className="btn btn-primary">
                 Register

@@ -9,7 +9,7 @@ const SEARCH_URL = "http://localhost:4000/api/search/";
     * This component is used to display the search results.
     * Also support search function if user wants to search again.
  */
-function SearchOwner({setRestaurantD}) {
+function SearchOwner({setRestaurantID, setRestaurantName}) {
     // set the search context and zip code to the state
     const [search, setSearch] = useState("");
     const [zipCode, setZip] = useState("");
@@ -56,7 +56,10 @@ function SearchOwner({setRestaurantD}) {
                                                    <div> Phone: {result.phone}</div>
                                                    <div> Rating: {result.rating}</div>
                                                    <img src={result.image_url} height={300} width={300}/>
-                                                   <button onClick={() => setRestaurantD(result.id)}>Select</button>
+                                                   <button onClick={() => {
+                                                       setRestaurantID(result.id)
+                                                       setRestaurantName(result.name)
+                                                   }}>Select</button>
                                                </li>
                             )
                 }

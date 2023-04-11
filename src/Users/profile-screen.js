@@ -22,6 +22,17 @@ function ProfileScreen() {
                         <span>Password: {currentUser.password}</span><br/>
                         <span>Email: {currentUser.email}</span><br/>
                         <span>Role: {currentUser.role}</span><br/>
+                        {currentUser.restaurantID && currentUser.restaurantID !== "" && (
+                            <>
+                                <span>Restaurant ID: {currentUser.restaurantID}</span><br/>
+                            </>
+                        )}
+
+                        {currentUser.restaurantName && currentUser.restaurantName !== "" && (
+                            <>
+                                <span>Restaurant Name: {currentUser.restaurantName}</span><br/>
+                            </>
+                        )}
                     </div>
                 )}
             </div>
