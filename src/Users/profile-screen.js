@@ -14,20 +14,18 @@ function ProfileScreen() {
     return (
         <div>
             <Nav/>
-            <h1>Profile Screen</h1>
             <div>
                 {currentUser && (
                     <div>
                         <h2>Welcome {currentUser.username}</h2>
-                        <h2>{currentUser.firstName} | {currentUser.lastName}</h2>
+                        <span>First Name: {currentUser.firstName}</span><br/>
+                        <span>Last Name: {currentUser.lastName}</span><br/>
+                        <span>Password: {currentUser.password}</span><br/>
+                        <span>Email: {currentUser.email}</span><br/>
+                        <span>Role: {currentUser.role}</span><br/>
                     </div>
                 )}
             </div>
-            <button className="btn btn-danger" onClick={() => {
-                dispatch(logoutThunk());
-                // if log out, we will return to the home page
-                navigate("/");
-            }}>Logout</button>
         </div>
     );
 }
