@@ -89,7 +89,6 @@ function RegisterScreen() {
                        value="USER"
                        name="radio-genre"
                        id="radio-user"
-                       checked
                        onChange={(e) => {
                            setRole(e.target.value);
                        }}
@@ -116,6 +115,14 @@ function RegisterScreen() {
                 />
                 <label htmlFor="radio-owner">Restaurant Owner</label><br/><br/>
             </div>
+
+            {role === "OWNER" && (
+                <div>
+                    hello
+                </div>
+            )}
+
+
             <button onClick={register} className="btn btn-primary">
                 Register
             </button>
