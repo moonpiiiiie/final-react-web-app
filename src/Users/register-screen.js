@@ -3,6 +3,7 @@ import Nav from "../nav";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import {useNavigate} from "react-router";
+import SearchOwner from "./search-owner";
 
 
 function RegisterScreen() {
@@ -13,6 +14,7 @@ function RegisterScreen() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
+    const [restaurantID, setRestaurantD] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const register = () => {
@@ -89,7 +91,6 @@ function RegisterScreen() {
                        value="USER"
                        name="radio-genre"
                        id="radio-user"
-                       checked
                        onChange={(e) => {
                            setRole(e.target.value);
                        }}
@@ -116,6 +117,13 @@ function RegisterScreen() {
                 />
                 <label htmlFor="radio-owner">Restaurant Owner</label><br/><br/>
             </div>
+
+            {role === "OWNER" && (
+                <SearchOwner setRestaurantD={setRestaurantD}/>
+            )}
+
+            <h1>Restaurant ID: {restaurantID}</h1>
+
             <button onClick={register} className="btn btn-primary">
                 Register
             </button>
