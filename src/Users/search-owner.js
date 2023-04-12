@@ -3,6 +3,7 @@ import Nav from "../nav";
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {useParams, useNavigate} from 'react-router-dom';
+import {registerThunk} from "./users-thunks";
 
 const SEARCH_URL = "http://localhost:4000/api/search/";
 /*
@@ -15,6 +16,7 @@ function SearchOwner({setRestaurantID, setRestaurantName}) {
     const [zipCode, setZip] = useState("");
     const [results, setResults] = useState([]);
     const [selected, setSelected] = useState("");
+    const [isSelected, setIsSelected] = useState(false);
 
     async function searchYelp() {
         if(search === "" || zipCode === "") {
@@ -64,9 +66,17 @@ function SearchOwner({setRestaurantID, setRestaurantName}) {
                                                    <button
                                                        className="btn btn-outline-primary ms-2"
                                                        onClick={() => {
-                                                           setRestaurantID(result.id)
-                                                           setRestaurantName(result.name)
-                                                           setSelected(result.id)
+                                                           if (isSelected && selected === result.id) {
+                                                               setRestaurantID("")
+                                                               setRestaurantName("")
+                                                               setSelected("")
+                                                               setIsSelected(false)
+                                                           } else {
+                                                               setRestaurantID(result.id)
+                                                               setRestaurantName(result.name)
+                                                               setSelected(result.id)
+                                                               setIsSelected(true)
+                                                           }
                                                    }}>{selected===result.id? "Selected":"Select"}</button>
                                                </li>
                             )

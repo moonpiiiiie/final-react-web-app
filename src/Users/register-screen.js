@@ -39,7 +39,8 @@ function RegisterScreen() {
                         setUsername(e.target.value);
                     }}
                 />
-            </div>
+            </div><br/>
+
             <div className="form-group">
                 <label>Password</label>
                 <input
@@ -50,7 +51,8 @@ function RegisterScreen() {
                         setPassword(e.target.value);
                     }}
                 />
-            </div>
+            </div><br/>
+
             <div className="form-group">
                 <label>First Name</label>
                 <input
@@ -61,7 +63,8 @@ function RegisterScreen() {
                         setFirstName(e.target.value);
                     }}
                 />
-            </div>
+            </div><br/>
+
             <div className="form-group">
                 <label>Last Name</label>
                 <input
@@ -72,7 +75,8 @@ function RegisterScreen() {
                         setLastName(e.target.value);
                     }}
                 />
-            </div>
+            </div><br/>
+
             <div className="form-group">
                 <label>Email</label>
                 <input
@@ -83,7 +87,8 @@ function RegisterScreen() {
                         setEmail(e.target.value);
                     }}
                 />
-            </div>
+            </div><br/>
+
             <div className="form-group">
                 <label>Role</label><br/>
 
@@ -115,15 +120,16 @@ function RegisterScreen() {
                            setRole(e.target.value);
                        }}
                 />
-                <label htmlFor="radio-owner">Restaurant Owner</label><br/><br/>
-            </div>
+                <label htmlFor="radio-owner">Restaurant Owner</label><br/>
+            </div><br/>
 
             {role === "OWNER" && (
-                <SearchOwner setRestaurantID={setRestaurantID} setRestaurantName={setRestaurantName} />
+                <>
+                    <span>Find Your Restaurant</span>
+                    <SearchOwner setRestaurantID={setRestaurantID} setRestaurantName={setRestaurantName} />
+                    <span>Your Restaurant is: {restaurantName}</span> <br/>
+                </>
             )}
-
-            {console.log(restaurantID)}
-            {console.log(restaurantName)}
 
             <button onClick={register} className="btn btn-primary mt-2">
                 Register
