@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Nav from "../nav";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "./users-thunks";
 import {useNavigate} from "react-router";
@@ -14,17 +13,27 @@ function RegisterScreen() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
+    const [zipcode, setZipCode] = useState("");
     const [restaurantID, setRestaurantID] = useState("");
     const [restaurantName, setRestaurantName] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const register = () => {
         try {
-            if (username === "" || password === "" || firstName === "" || lastName === "" || email === "" || role === "" || restaurantID === "" || restaurantName === "") {
-                alert("Please enter all the information!");
+            if (role === "OWNER") {
+                if (username === "" || password === "" || firstName === "" || lastName === "" || email === "" || role === "" || restaurantID === "" || restaurantName === "" || zipcode === "") {
+                    alert("Please enter all the information!");
+                } else {
+                    dispatch(registerThunk({ username, password, firstName,lastName, email, role, restaurantID, restaurantName, zipcode }));
+                    navigate("/profile");
+                }
             } else {
-                dispatch(registerThunk({ username, password, firstName,lastName, email, role, restaurantID, restaurantName }));
-                navigate("/profile");
+                if (username === "" || password === "" || firstName === "" || lastName === "" || email === "" || role === "" || zipcode === "") {
+                    alert("Please enter all the information!");
+                } else {
+                    dispatch(registerThunk({ username, password, firstName,lastName, email, role, zipcode }));
+                    navigate("/profile");
+                }
             }
         } catch (err) {
             console.log(err);
@@ -89,6 +98,18 @@ function RegisterScreen() {
                     value={email}
                     onChange={(e) => {
                         setEmail(e.target.value);
+                    }}
+                />
+            </div><br/>
+
+            <div className="form-group">
+                <label>ZIP Code</label>
+                <input
+                    type="zipcode"
+                    className="form-control"
+                    value={zipcode}
+                    onChange={(e) => {
+                        setZipCode(e.target.value);
                     }}
                 />
             </div><br/>
