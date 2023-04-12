@@ -13,6 +13,10 @@ function LoginScreen() {
     const navigate = useNavigate();
     const login = async() => {
         try {
+            if (username === "" || password === "") {
+                alert("Please enter your username and password!");
+                return;
+            }
             await dispatch(loginThunk({ username, password }));
             navigate("/profile");
         } catch (err) {

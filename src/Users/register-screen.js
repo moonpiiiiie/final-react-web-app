@@ -20,8 +20,12 @@ function RegisterScreen() {
     const navigate = useNavigate();
     const register = () => {
         try {
-            dispatch(registerThunk({ username, password, firstName,lastName, email, role, restaurantID, restaurantName }));
-            navigate("/profile");
+            if (username === "" || password === "" || firstName === "" || lastName === "" || email === "" || role === "" || restaurantID === "" || restaurantName === "") {
+                alert("Please enter all the information!");
+            } else {
+                dispatch(registerThunk({ username, password, firstName,lastName, email, role, restaurantID, restaurantName }));
+                navigate("/profile");
+            }
         } catch (err) {
             console.log(err);
         }
