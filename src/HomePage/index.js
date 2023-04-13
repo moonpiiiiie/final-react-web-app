@@ -1,7 +1,12 @@
+import RestaurantList from "./restaurants-list";
+import {Routes, Route} from "react-router";
 function HomePage() {
     return (
         <div>
-            <h1>Home Page is Here</h1>
+            <h1>Dog-friendly restaurants nearby</h1>
+            <Routes>
+                <Route path="/" element={<RestaurantList/>}/>
+            </Routes>
         </div>
     );
 }
