@@ -18,8 +18,8 @@ export const createUser = (user) => {
     return axios.post(USERS_API_URL, user);
 };
 
-export const updateUser = (newUser) => {
-    return axios.put(`${USERS_API_URL}/${newUser.id}`, newUser);
+export const updateUser = (user) => {
+    return axios.put(`${USERS_API_URL}/${user._id}`, user);
 };
 
 export const deleteUser = (id) => {

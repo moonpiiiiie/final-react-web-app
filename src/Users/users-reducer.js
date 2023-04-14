@@ -14,9 +14,7 @@ const usersSlice = createSlice({
     reducers: {},
     extraReducers: {
         [updateUserThunk.fulfilled]: (state, action) => {
-            state.users = state.users.map((user) =>
-                user.id === action.payload.id ? action.payload : user
-            );
+            state.currentUser = action.payload;
         },
         [createUserThunk.fulfilled]: (state, action) => {
             state.users.push(action.payload);
