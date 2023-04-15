@@ -28,7 +28,7 @@ function DetailList() {
             dispatch(profileThunk());
             asyncData();
         }
-    });
+    },[]);
     return (
 
         <ul className="list-group">

@@ -30,7 +30,7 @@ function ReviewList() {
             dispatch(profileThunk());
             asyncData();
         }
-    });
+    },[]);
 
     const { currentUser } = useSelector(state => state.users);
    
