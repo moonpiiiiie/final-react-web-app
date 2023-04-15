@@ -20,11 +20,8 @@ export const createReviewThunk = createAsyncThunk(
 export const deleteReviewThunk = createAsyncThunk(
     "reviews/delete",
     async (id) => {
-        const response = await reviewService.deleteReview(id);
-        debugger;
-        console.log("thunks")
-        console.log(response);
-        return response;
+        await reviewService.deleteReview(id);
+        return id;
     }
 );
 
