@@ -28,9 +28,6 @@ export const createReview = async (review) => {
 
 export const deleteReview = async (_id) => {
     const response = await axios.delete(`${REVIEWS_API_URL}/${_id}`);
-    console.log("service");
-    console.log(response.data);
-    debugger;
     return response.data;
 };
 

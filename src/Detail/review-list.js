@@ -13,14 +13,24 @@ const REVIEW_URL = "http://localhost:4000/api/reviews/restaurant/";
  */
 function ReviewList() {
     const {id} = useParams();
-    const {reviews} = useSelector(state => state.reviews);
-    
+    const [result, setResult] = useState([]);
     let [leaveReview, setLeaveReview] = useState('');
    
     const dispatch = useDispatch();
+  
     useEffect(() => {
-        dispatch(findReviewByRestaurantIdThunk(id));
-    },[]);
+        const asyncData = async () => {
+            // This is the node API url for detail restraurant informations
+            const response = await axios(REVIEW_URL + id);
+            setResult(response.data);
+           
+        };
+        // make sure we only run asyncData() once
+        if(result.length === 0){
+            dispatch(profileThunk());
+            asyncData();
+        }
+    });
 
     const { currentUser } = useSelector(state => state.users);
    
@@ -33,10 +43,10 @@ function ReviewList() {
         }
         const newReview = {
             ...templateReview,
-            review: leaveReview,
-            date: Date.now()
+            review: leaveReview
         }
         dispatch(createReviewThunk(newReview));
+        window.location.reload();
     };
     return (
         <>
@@ -55,8 +65,8 @@ function ReviewList() {
         <ul className="list-group">
        
             {
-                reviews && reviews.map(Review =>
-                    <ReviewItem result={Review}/>)
+                result && result.map(result =>
+                    <ReviewItem result={result}/>)
             }
         </ul>
         </>

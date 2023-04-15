@@ -8,6 +8,7 @@ import Search from "./Search";
 import ProfileScreen from "./Users/profile-screen";
 import AdminScreen from "./Users/admin-screen";
 import LoginScreen from "./Users/login-screen";
+
 import {Provider} from "react-redux";
 import store from "./store.js";
 import RegisterScreen from "./Users/register-screen";

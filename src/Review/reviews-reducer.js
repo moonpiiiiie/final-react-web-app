@@ -29,10 +29,6 @@ const reviewsSlice = createSlice({
         [deleteReviewThunk.fulfilled]: (state, action) => {
             state.loading = false;
             state.reviews = state.reviews.filter(review => review._id !== action.payload._id);
-            console.log("reduce");
-            console.log(action);
-            console.log(state.review);
-            debugger;
         },
         [deleteReviewThunk.rejected]: (state, action) => {
             state.loading = false;
@@ -44,10 +40,6 @@ const reviewsSlice = createSlice({
         [findReviewByRestaurantIdThunk.fulfilled]: (state, action) => {
             state.loading = false;
             state.reviews = action.payload;
-            // console.log("reduce");
-            // console.log(action);
-            // console.log(state.review);
-            // console.log(action.payload);
             
         },
         [findReviewByRestaurantIdThunk.rejected]: (state, action) => {
