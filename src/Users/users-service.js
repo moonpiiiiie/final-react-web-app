@@ -10,8 +10,10 @@ export const findAllUsers = async () => {
     return response.data;
 };
 
-export const findUserById = (id) => {
-    return axios.get(`${USERS_API_URL}/${id}`).then((response) => response.data);
+export const findUserById = async (id) => {
+  const response = await axios.get(`${USERS_API_URL}/profile/${id}`);
+  console.log(id);
+  return response.data;
 };
 
 export const createUser = (user) => {
@@ -19,7 +21,7 @@ export const createUser = (user) => {
 };
 
 export const updateUser = (user) => {
-    return axios.put(`${USERS_API_URL}/${user._id}`, user);
+    return api.put(`${USERS_API_URL}/${user._id}`, user);
 };
 
 export const deleteUser = (id) => {
