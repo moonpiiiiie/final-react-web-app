@@ -21,6 +21,7 @@ function DetailList() {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
             setResult(response.data);
+           
         };
         // make sure we only run asyncData() once
         if(result.length === 0){

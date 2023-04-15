@@ -12,7 +12,8 @@ const RestaurantItem = (
             rating: "No Rating",
             image_url: "No Image",
             comment:"comments....",
-            location:"location"
+            location:"location",
+            price:"price"
         }
     }
 ) => {
@@ -29,11 +30,13 @@ const RestaurantItem = (
                                     <a  href={'http://localhost:3000/detail/' + restaurant.id}>
                                     <h5 className="card-title"> {restaurant.name}</h5>
                                     </a>
-                                    <div> Phone: {restaurant.phone}</div>
+                                    <div> <i class="bi bi-cash-coin"></i> {restaurant.price} </div>
+                                    <div> <i class="bi bi-telephone"></i> {restaurant.display_phone}</div>
                                     <div> Rating: {restaurant.rating}</div>
-                                    <div> Location: {restaurant.location.display_address.join(", ")
+                                    <div> <i class="bi bi-geo-alt"></i> {restaurant.location.display_address.join(", ")
 }</div>
-                                    <div> Comment: {restaurant.comment} </div>
+                                    <div> <i class="bi bi-chat-right-text"></i> {restaurant.comment} </div>
+                                  
                                 </div>
                                
                         
