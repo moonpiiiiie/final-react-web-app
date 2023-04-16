@@ -19,9 +19,6 @@ export const createUser = (user) => {
 };
 
 export const updateUser = (newUser) => {
-    debugger;
-    console.log(newUser);
-    debugger;
     return axios.put(`${USERS_API_URL}/${newUser._id}`, newUser);
 };
 

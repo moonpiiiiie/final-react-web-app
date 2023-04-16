@@ -1,6 +1,9 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { deleteDealThunk } from "../Deals/deals-thunks";
+
+
+
 /*
     This component is used to display the details of a single restaurant.
  */
@@ -24,10 +27,13 @@ const DealItem = (
         dispatch(deleteDealThunk(_id));
         window.location.reload();
     }
+    
+ 
+
     return(
         <>
-           
          
+           
             <div className="card col-md-6">
                     <div className="card-body">
                         <h5 className="card-title"> {result.username}</h5>

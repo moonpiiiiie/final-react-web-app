@@ -17,42 +17,32 @@ function DetailList() {
     const {id} = useParams();
     const [result, setResult] = useState([]);
     const { currentUser } = useSelector(state => state.users);
-    console.log(currentUser);
-    debugger;
     const [profile, setProfile] = useState();
 
 
     const dispatch = useDispatch();
     const fetchProfile = async () => {
         const response = await dispatch(profileThunk());
-        console.log(response);
-        debugger;
         setProfile(response.payload);
     };
     const loadScreen = async () => {
         await fetchProfile();
     };
      const updateProfile = async () => {
-        // setProfile({
-        //     ...profile,
-        //     restaurantID: id});
         await dispatch(updateUserThunk({
             ...profile,
             restaurantID: id}));
-        // console.log(profile);
-        // debugger;
-        // window.location.reload();
       };
     useEffect(() => {
         loadScreen();
-        // console.log(profile);
-        // debugger;
     }, []);
    
     useEffect(() => {
         const asyncData = async () => {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
+            console.log("react detail-list");
+            console.log(response);
             setResult(response.data);
 
         };
@@ -62,11 +52,6 @@ function DetailList() {
             asyncData();
         }
     },[]);
-    console.log(profile);
-
-    console.log(id);
-    console.log(currentUser);
-    debugger;
     return (
     <>
     { (() => {

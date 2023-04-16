@@ -5,7 +5,7 @@ import DealItem from "./deal-item";
 import {useParams } from 'react-router-dom';
 import {profileThunk} from "../Users/users-thunks";
 import { createDealThunk } from "../Deals/deals-thunks";
-
+const DETAIL_URL = "http://localhost:4000/api/detail/";
 const DEAL_URL = "http://localhost:4000/api/deals/restaurant/";
 
 /*
@@ -33,11 +33,26 @@ function DealList() {
     },[]);
 
     const { currentUser } = useSelector(state => state.users);
+    const [restaurant, setRestaurant] = useState([]);
    
+    useEffect(() => {
+        const asyncData = async () => {
+            // This is the node API url for detail restraurant informations
+            const response = await axios(DETAIL_URL + id);
+            setRestaurant(response.data);
+          
+        };
+        // make sure we only run asyncData() once
+        if(result.length === 0){
+            dispatch(profileThunk());
+            asyncData();
+        }
+    },[]);
  
     const submitDeal = () => {
         const templateDeal = {
             "restaurantID": id,
+            "restaurantName": restaurant.name,
             "userID": currentUser._id,
             "username": currentUser.username
         }
@@ -50,7 +65,7 @@ function DealList() {
     };
     return (
         <>
-        
+    
         {currentUser && currentUser.role==="OWNER" ? <div className="col-md-6">
                 <textarea value={leaveDeal} 
                 className="form-control mb-3" 
