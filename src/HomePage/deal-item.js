@@ -26,10 +26,11 @@ const DealItem = (
          
             <div className="card col-md-6">
                     <div className="card-body">
-                        <h5 className="card-title"> {result.restaurantName}</h5>
+                    <a  href={'http://localhost:3000/detail/' + result.restaurantID}>
+                    <h5 className="card-title"> {result.restaurantName}</h5>
+                            </a>
+                        
                         <p className="card-text"> {result.deal}</p>
-
-      
                     </div>
             </div>
             
