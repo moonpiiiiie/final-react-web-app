@@ -22,7 +22,6 @@ function RestaurantList() {
                 // This is the node API url for search restraurant informations
                 const response = await axios(SEARCH_URL + zipcode + '/' + 'restaurant');
                 // console.log("nxt" + zipcode);
-                console.log(response.data);
                 setRestaurants(response.data);
             }catch (e) {
                 console.log(e);
@@ -34,10 +33,9 @@ function RestaurantList() {
         }
     });
     const { currentUser } = useSelector(state => state.users);
-    console.log(currentUser);
    
     const zipcode = currentUser ? currentUser.zipcode : '95113';
-    console.log(zipcode);
+ 
     return (
         <div >
 

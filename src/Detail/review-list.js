@@ -50,15 +50,16 @@ function ReviewList() {
     };
     return (
         <>
-        {currentUser && currentUser.role==="USER" ? (<button> Favorite the restaurant </button>) : ""}
-        {currentUser && currentUser.role==="USER" ? <div className="col-md-6">
+       
+        {currentUser && currentUser.role==="USER" && currentUser.canReview ? <div className="col-md-6">
+                <h1>Leave your Reviews</h1>  
                 <textarea value={leaveReview} 
                 className="form-control mb-3" 
                 id="exampleFormControlTextarea1" 
                 rows="3" 
                 onChange={(event) => setLeaveReview(event.target.value)}>
                 </textarea>
-                <button className="btn btn-primary mb-3" onClick={submitReview}>Submit</button>
+                <button className="btn btn-primary mb-3 rounded-pill " onClick={submitReview}>Submit</button>
             </div> : ""}
          <div className="mt-3">
             <h1>Reviews</h1>  

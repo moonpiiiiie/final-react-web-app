@@ -15,6 +15,9 @@ const usersSlice = createSlice({
     extraReducers: {
         [updateUserThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload;
+            console.log(state.currentUser);
+            console.log(action.payload);
+            debugger;
         },
         [createUserThunk.fulfilled]: (state, action) => {
             state.users.push(action.payload);

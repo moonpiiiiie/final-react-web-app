@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import DetailItem from "./detail-item";
 import {useParams } from 'react-router-dom';
 import {profileThunk} from "../Users/users-thunks";
-import { current } from "@reduxjs/toolkit";
+
 import { updateUserThunk } from "../Users/users-thunks";
 
 const DETAIL_URL = "http://localhost:4000/api/detail/";
@@ -28,11 +28,26 @@ function DetailList() {
     const loadScreen = async () => {
         await fetchProfile();
     };
-     const updateProfile = async () => {
+    const updateProfile = async () => {
         await dispatch(updateUserThunk({
             ...profile,
             restaurantID: id}));
-      };
+    };
+
+    const favRestaurant = async () => {
+        await dispatch(updateUserThunk({
+            ...profile,
+            favRestaurants: [...profile.favRestaurants, id]}));
+            console.log(profile);
+            console.log(profile.favRestaurants);
+            debugger;
+    };
+
+    const unFavRestaurant = async () => {
+        await dispatch(updateUserThunk({
+            ...profile,
+            favRestaurants: profile.favRestaurant.filter((item) => item !== id)}));
+    };
     useEffect(() => {
         loadScreen();
     }, []);
@@ -41,10 +56,7 @@ function DetailList() {
         const asyncData = async () => {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
-            console.log("react detail-list");
-            console.log(response);
             setResult(response.data);
-
         };
         // make sure we only run asyncData() once
         if(result.length === 0){
@@ -66,11 +78,24 @@ function DetailList() {
             }
             })()
     }
+
         <ul className="list-group">
            {
                result && <DetailItem result={result}/>
            }
        </ul>
+       <div>
+    { (() => {
+            if (currentUser && currentUser.role==="USER") { 
+                if (currentUser.favRestaurants.includes(id)) {
+                    return (<div className="m-2"> <i class="bi bi-star-fill" onClick={unFavRestaurant}> Liked the restaurant</i></div>)
+                } else {
+                    return (<div className="m-2"> <i class="bi bi-star" onClick={favRestaurant}> Like the restaurant</i></div>)
+                }
+            } 
+            })()
+    }
+    </div>
     </>
         
     );

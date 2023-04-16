@@ -66,7 +66,7 @@ function DealList() {
     return (
         <>
     
-        {currentUser && currentUser.role==="OWNER" ? <div className="col-md-6">
+        {currentUser && currentUser.role==="OWNER" && currentUser.restaurantID===id ? <div className="col-md-6">
                 <textarea value={leaveDeal} 
                 className="form-control mb-3" 
                 id="exampleFormControlTextarea1" 
