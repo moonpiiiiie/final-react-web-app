@@ -12,7 +12,6 @@ export const findAllUsers = async () => {
 
 export const findUserById = async (id) => {
   const response = await axios.get(`${USERS_API_URL}/profile/${id}`);
-  console.log(id);
   return response.data;
 };
 

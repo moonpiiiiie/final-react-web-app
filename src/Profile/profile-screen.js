@@ -7,6 +7,7 @@ import {useNavigate} from "react-router";
 function ProfileScreen() {
     const { currentUser } = useSelector((state) => state.users);
     const [profile, setProfile] = useState(currentUser);
+    console.log("currentUser", currentUser);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const fetchProfile = async () => {

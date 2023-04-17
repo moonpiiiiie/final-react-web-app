@@ -10,7 +10,7 @@ import ProfileUidScreen from "./Profile/profile-screen-uid";
 import AdminScreen from "./Users/admin-screen";
 import LoginScreen from "./Users/login-screen";
 import {Provider} from "react-redux";
-import store from "./Users";
+import store from "./store";
 import RegisterScreen from "./Users/register-screen";
 import Detail from "./Detail";
 import React from "react";
