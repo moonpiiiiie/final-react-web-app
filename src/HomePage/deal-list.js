@@ -37,7 +37,7 @@ function DealList() {
         <>
         
        
-         <div className="mt-3">
+         <div className="m-3">
             <h1>Recent Deals</h1>  
             <ul className="list-group">
        {

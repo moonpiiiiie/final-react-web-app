@@ -28,11 +28,11 @@ function DetailList() {
     const loadScreen = async () => {
         await fetchProfile();
     };
-    const updateProfile = async () => {
-        await dispatch(updateUserThunk({
-            ...profile,
-            restaurantID: id}));
-    };
+    // const updateProfile = async () => {
+    //     await dispatch(updateUserThunk({
+    //         ...profile,
+    //         restaurantID: id}));
+    // };
 
     const favRestaurant = async () => {
         // await dispatch(updateUserThunk({
@@ -66,7 +66,7 @@ function DetailList() {
     },[]);
     return (
     <>
-    { (() => {
+    {/* { (() => {
             if (currentUser && currentUser.role==="OWNER") { 
                 if (currentUser.restaurantID===id) {
                     return (<h2>This is your restaurant</h2>)
@@ -77,7 +77,7 @@ function DetailList() {
                 return ("")
             }
             })()
-    }
+    } */}
 
         <ul className="list-group">
            {

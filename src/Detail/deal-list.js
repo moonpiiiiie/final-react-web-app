@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import DealItem from "./deal-item";
-import {useParams } from 'react-router-dom';
+import {Link, useParams } from 'react-router-dom';
 import {profileThunk} from "../Users/users-thunks";
 import { createDealThunk } from "../Deals/deals-thunks";
 const DETAIL_URL = "http://localhost:4000/api/detail/";
@@ -53,6 +53,7 @@ function DealList() {
         const templateDeal = {
             "restaurantID": id,
             "restaurantName": restaurant.name,
+            "restaurantLocation": restaurant.location.display_address.join(", "),
             "userID": currentUser._id,
             "username": currentUser.username
         }
@@ -66,7 +67,7 @@ function DealList() {
     return (
         <>
     
-        {currentUser && currentUser.role==="OWNER" && currentUser.restaurantID===id ? <div className="col-md-6">
+        {currentUser && currentUser.role==="OWNER" && currentUser.restaurantID===id ? <div className="col-md-6 m-3">
                 <textarea value={leaveDeal} 
                 className="form-control mb-3" 
                 id="exampleFormControlTextarea1" 
@@ -75,8 +76,9 @@ function DealList() {
                 </textarea>
                 <button className="btn btn-primary mb-3" onClick={submitDeal}>Add a deal</button>
             </div> : ""}
-         <div className="mt-3">
+         <div className="m-3">
             <h1>Deals</h1>  
+            
             <ul className="list-group">
        {
            result && result.map(result =>

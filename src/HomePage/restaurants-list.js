@@ -21,7 +21,6 @@ function RestaurantList() {
             try{
                 // This is the node API url for search restraurant informations
                 const response = await axios(SEARCH_URL + zipcode + '/' + 'restaurant');
-                // console.log("nxt" + zipcode);
                 setRestaurants(response.data);
             }catch (e) {
                 console.log(e);
@@ -37,9 +36,10 @@ function RestaurantList() {
     const zipcode = currentUser ? currentUser.zipcode : '95113';
  
     return (
-        <div >
+        <div className="m-3">
 
             <div className="row">
+            <h1>Dog-friendly restaurants nearby</h1>
                 {
                     restaurants && restaurants.map(Restaurant =>
                                                <RestaurantItem restaurant={Restaurant}/>)

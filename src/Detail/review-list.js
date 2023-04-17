@@ -2,9 +2,10 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import ReviewItem from "./review-item";
-import {useParams } from 'react-router-dom';
+import {useParams, Link } from 'react-router-dom';
 import {profileThunk} from "../Users/users-thunks";
 import { createReviewThunk } from "../Reviews/reviews-thunks";
+
 
 const REVIEW_URL = "http://localhost:4000/api/reviews/restaurant/";
 
@@ -61,8 +62,9 @@ function ReviewList() {
                 </textarea>
                 <button className="btn btn-primary mb-3 rounded-pill " onClick={submitReview}>Submit</button>
             </div> : ""}
-         <div className="mt-3">
+         <div className="m-3">
             <h1>Reviews</h1>  
+            {!currentUser ? <Link to="http://localhost:3000/login">Log in to leave your reviews</Link> : ""}
             <ul className="list-group">
        {
            result && result.map(result =>

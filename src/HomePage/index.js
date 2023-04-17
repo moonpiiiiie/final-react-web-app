@@ -5,7 +5,7 @@ function HomePage() {
     return (
         <div>
             <DealList/>
-            <h1>Dog-friendly restaurants nearby</h1>
+            
             
             <Routes>
                 

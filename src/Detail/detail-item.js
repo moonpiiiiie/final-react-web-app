@@ -20,7 +20,7 @@ const DetailItem = (
 ) => {
     return(
         <>
-            <h1> {result.name}</h1>
+            <h1 className="m-3"> {result.name}</h1>
             <div className="row">
                     <div className="col-md-4">
                     
@@ -28,7 +28,7 @@ const DetailItem = (
                            
                             </div>
                             <div className="col-md-8">
-                                <div className="card-body">
+                                <div className="card-body mt-3">
                                    
                                     <div className="pb-3"> <i class="bi bi-cash-coin"></i> {result.price} </div>
                                     <div className="pb-3"> <i class="bi bi-telephone"></i> {result.display_phone}</div>
