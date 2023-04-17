@@ -30,13 +30,12 @@ const ReviewItem = (
     }
     return(
         <>
-           
-         
             <div className="card col-md-6">
-                <div className="row">
+                <div className="row no-gutters">
                     <div className="col-md-2">
-                        
-                        <Avatar sx={{ bgcolor: deepPurple[500],  width: 50, height: 50 }}>{result.username.charAt(0)}</Avatar>
+                    <div className="card-body">
+                        <Avatar sx={{ bgcolor: deepPurple[500],  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
+                        </div>
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
@@ -46,12 +45,12 @@ const ReviewItem = (
                         </div>
                     </div>
                     <div className="col-md-2">
+                    <div className="card-body">
                         {(currentUser && currentUser._id === result.userID) ? (
                         <button onClick={() => deleteReviewHandler(result._id)} className="btn btn-sm btn-danger rounded-pill float-end">Delete</button>) : ""}
+                   </div>
                     </div>
                 </div>
-                    
-                
             </div>
             
         </>

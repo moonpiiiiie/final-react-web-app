@@ -35,18 +35,18 @@ function DetailList() {
     };
 
     const favRestaurant = async () => {
-        await dispatch(updateUserThunk({
-            ...profile,
-            favRestaurants: [...profile.favRestaurants, id]}));
-            console.log(profile);
-            console.log(profile.favRestaurants);
-            debugger;
+        // await dispatch(updateUserThunk({
+        //     ...profile,
+        //     favRestaurants: [...profile.favRestaurants, id]}));
+        //     console.log(profile);
+        //     console.log(profile.favRestaurants);
+        //     debugger;
     };
 
     const unFavRestaurant = async () => {
-        await dispatch(updateUserThunk({
-            ...profile,
-            favRestaurants: profile.favRestaurant.filter((item) => item !== id)}));
+        // await dispatch(updateUserThunk({
+        //     ...profile,
+        //     favRestaurants: profile.favRestaurant.filter((item) => item !== id)}));
     };
     useEffect(() => {
         loadScreen();
