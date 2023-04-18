@@ -11,23 +11,35 @@ const DetailItem = (
             phone: "No Phone",
             rating: "No Rating",
             image_url: "No Image",
-            price: "No Price",
+            comment:"comments....",
+            location:"location",
+            price:"price"
         }
 
     }
 ) => {
     return(
         <>
-            <h1> {result.name}</h1>
-                <div className="row">
-                    <div className='col-5'>
-                        <img className="" src={result.image_url} width={300} height={300}/>
-                    </div>
-                    <div className='col-5'>
-                        <div> Phone: {result.phone}</div>
-                        <div> Rating: {result.rating}</div>
-                        <div> Price: {result.price}</div>
-                    </div>
+            <h1 className="m-3"> {result.name}</h1>
+            <div className="row">
+                    <div className="col-md-4">
+                    
+                            <img className="p-3" src={result.image_url} width={300} height={300}/>
+                           
+                            </div>
+                            <div className="col-md-8">
+                                <div className="card-body mt-3">
+                                   
+                                    <div className="pb-3"> <i class="bi bi-cash-coin"></i> {result.price} </div>
+                                    <div className="pb-3"> <i class="bi bi-telephone"></i> {result.display_phone}</div>
+                                    <div className="pb-3"> Rating: {result.rating}</div>
+                                    {/* <div> <i class="bi bi-geo-alt"></i> {result.location.display_address.join(", ")
+}</div> */}
+                                   
+                                </div>
+                            </div>
+                           
+                   
                 </div>
         </>
     )
