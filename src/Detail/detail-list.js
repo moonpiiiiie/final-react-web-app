@@ -11,8 +11,9 @@ const DETAIL_URL = "http://localhost:4000/api/detail/";
 
 function DetailList() {
     const { id } = useParams();
-    const [restDetail, setRestDetail] = useState({});
     const { currentUser } = useSelector(state => state.users);
+    const [restDetail, setRestDetail] = useState({});
+    const [name, setName] = useState("");
     const [favRestaurants, setFavRestaurants] = useState([]);
     const [liked, setLiked] = useState(false);
 
@@ -21,11 +22,11 @@ function DetailList() {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
             setRestDetail(response.data);
+            setName(response.data.name);
         };
         // make sure we only run asyncData() once
         if (Object.keys(restDetail).length === 0) {
             asyncData();
-         
         }
     }, [id]);
 
@@ -50,15 +51,12 @@ function DetailList() {
     }, [favRestaurants, id])
 
     const favRestaurantOnClick = async () => {
-        const response = await favoriteRestaurant(currentUser._id, id, restDetail.name);
-        console.log("favRestaurantOnClick");
-        console.log(response);
+        const response = await favoriteRestaurant(currentUser._id, id, name);
         setLiked(true);
     };
 
     const unFavRestaurantOnClick = async () => {
         const response = await unfavoriteRestaurant(currentUser._id, id);
-        console.log(response);
         setLiked(false);
      };
 

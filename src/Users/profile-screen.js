@@ -49,7 +49,10 @@ function ProfileScreen() {
                         <ul>
                             {favRestaurant.map((item) => (
                                 <li className="list-group-item">
+                                    <a href={'http://localhost:3000/detail/' + item.restaurantId}>
                                     <h3>{item.restaurantName}</h3>
+                                    </a>
+                                   
                                 </li>))}
                         </ul>
                     </div>
