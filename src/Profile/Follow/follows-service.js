@@ -6,23 +6,22 @@ export const createFollow = async (follow) => {
   return response.data;
 }
 
-export const findFollowersByFollowed = async (userId) => {
+export const findFollowingByFollowed = async (userId) => {
   const response = await axios.get(
     `${USERS_API_URL}/follows/followers/${userId}`
   );
-  return response.data;
+  return response;
 }
 
 export const findFollowedByFollowing = async (userId) => {
   const response = await axios.get(
-    `${USERS_API_URL}/follows/following/${userId}`
+    `${USERS_API_URL}/follows/following/${userId}`, {params: userId}
   );
   return response.data;
 }
 
 export const unfollow = async (follow) => {
   const response = await axios.delete(`${USERS_API_URL}/follows/unfollows`, {data: follow});
-   console.log("response in thunk", response);
   return response.data;
 }
 
