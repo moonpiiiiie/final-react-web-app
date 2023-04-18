@@ -17,6 +17,7 @@ function ProfileUidScreen() {
     const [followers, setFollowers] = useState([]);
 
     const fetchProfile = async () => {
+        console.log("fetchProfile");
         const user = await findUserById(uid);
         await setProfile(user);
         // await dispatch(profileThunk());
@@ -30,13 +31,10 @@ function ProfileUidScreen() {
 
     const isFollow = async () => {
         const response = await dispatch(findIsFollowedByIdThunk({followed: uid, following: currentUser._id}));
-        console.log("isfollow response", response.payload);
         if (response.payload) {
             setIsFollowed(true);
-            return true;
         } else {
             setIsFollowed(false);
-            return false;
         }
     }
 
@@ -57,9 +55,8 @@ function ProfileUidScreen() {
     };
 
     useEffect(() => {
-        if (!currentUser) {
-            loadScreen();
-        }
+        loadScreen();
+
         if (currentUser) {
             isFollow();
         }
@@ -67,7 +64,7 @@ function ProfileUidScreen() {
 
    return(
          <div>
-             {(profile && currentUser) && (
+             {profile && (
                 <div>
                      <div>
                          <h1>{profile.username} Profile</h1>
