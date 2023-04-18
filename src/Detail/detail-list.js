@@ -13,18 +13,15 @@ function DetailList() {
     const { id } = useParams();
     const { currentUser } = useSelector(state => state.users);
     const [restDetail, setRestDetail] = useState({});
-    // const [name, setName] = useState("");
     const [favRestaurants, setFavRestaurants] = useState([]);
     const [liked, setLiked] = useState(false);
-    let name = "";
+   
     useEffect(() => {
         const asyncData = async () => {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
             setRestDetail(response.data);
-            // setName(response.data.name);
-            name = response.data.name;
-            console.log(name);
+       
         };
         // make sure we only run asyncData() once
         if (Object.keys(restDetail).length === 0) {
@@ -53,7 +50,8 @@ function DetailList() {
     }, [favRestaurants, id])
 
     const favRestaurantOnClick = async () => {
-        const response = await favoriteRestaurant(currentUser._id, id, name);
+        const response = await favoriteRestaurant(currentUser._id, id, restDetail.name);
+       
         setLiked(true);
     };
 
