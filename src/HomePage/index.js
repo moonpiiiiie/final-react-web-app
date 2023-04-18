@@ -5,10 +5,7 @@ function HomePage() {
     return (
         <div>
             <DealList/>
-            
-            
             <Routes>
-                
                 <Route path="/" element={<RestaurantList/>}/>
             </Routes>
         </div>

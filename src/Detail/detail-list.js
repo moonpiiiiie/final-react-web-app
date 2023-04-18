@@ -1,103 +1,91 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect, useState, useMemo } from "react";
+import { useSelector } from "react-redux";
 import DetailItem from "./detail-item";
-import {useParams } from 'react-router-dom';
-import {profileThunk} from "../Users/users-thunks";
+import { useParams } from 'react-router-dom';
+import { favoriteRestaurant, findFavoriteRestaurantsByUserId, unfavoriteRestaurant } from "../Users/favoriteRestaurant-service";
 
-import { updateUserThunk } from "../Users/users-thunks";
 
 const DETAIL_URL = "http://localhost:4000/api/detail/";
 
 
-/*
-    * This component is used to display restraunt.
- */
 function DetailList() {
-    const {id} = useParams();
-    const [result, setResult] = useState([]);
+    const { id } = useParams();
+    const [restDetail, setRestDetail] = useState({});
     const { currentUser } = useSelector(state => state.users);
-    const [profile, setProfile] = useState();
+    const [favRestaurants, setFavRestaurants] = useState([]);
+    const [liked, setLiked] = useState(false);
 
-
-    const dispatch = useDispatch();
-    const fetchProfile = async () => {
-        const response = await dispatch(profileThunk());
-        setProfile(response.payload);
-    };
-    const loadScreen = async () => {
-        await fetchProfile();
-    };
-    // const updateProfile = async () => {
-    //     await dispatch(updateUserThunk({
-    //         ...profile,
-    //         restaurantID: id}));
-    // };
-
-    const favRestaurant = async () => {
-        // await dispatch(updateUserThunk({
-        //     ...profile,
-        //     favRestaurants: [...profile.favRestaurants, id]}));
-        //     console.log(profile);
-        //     console.log(profile.favRestaurants);
-        //     debugger;
-    };
-
-    const unFavRestaurant = async () => {
-        // await dispatch(updateUserThunk({
-        //     ...profile,
-        //     favRestaurants: profile.favRestaurant.filter((item) => item !== id)}));
-    };
-    useEffect(() => {
-        loadScreen();
-    }, []);
-   
     useEffect(() => {
         const asyncData = async () => {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
-            setResult(response.data);
+            setRestDetail(response.data);
         };
         // make sure we only run asyncData() once
-        if(result.length === 0){
-            dispatch(profileThunk());
+        if (Object.keys(restDetail).length === 0) {
             asyncData();
+         
         }
-    },[]);
-    return (
-    <>
-    {/* { (() => {
-            if (currentUser && currentUser.role==="OWNER") { 
-                if (currentUser.restaurantID===id) {
-                    return (<h2>This is your restaurant</h2>)
-                } else {
-                    return (<button onClick={updateProfile} className="btn btn-primary">This is my restaurant</button>)
-                }
-            } else {
-                return ("")
-            }
-            })()
-    } */}
+    }, [id]);
 
-        <ul className="list-group">
-           {
-               result && <DetailItem result={result}/>
-           }
-       </ul>
-       <div>
-    { (() => {
-            if (currentUser && currentUser.role==="USER") { 
-                if (currentUser.favRestaurants.includes(id)) {
-                    return (<div className="m-2"> <i class="bi bi-star-fill" onClick={unFavRestaurant}> Liked the restaurant</i></div>)
-                } else {
-                    return (<div className="m-2"> <i class="bi bi-star" onClick={favRestaurant}> Like the restaurant</i></div>)
+    useEffect(() => {
+        const loadScreen = async (id) => {     
+            findFavoriteRestaurantsByUserId(currentUser._id).then((data) =>{
+                setFavRestaurants(data);
+            });
+        };
+  
+        if (currentUser) {
+            loadScreen(id);
+        }
+    }, [currentUser, id, favRestaurants]);
+
+    useEffect(() => {
+        favRestaurants.forEach((item) => {
+            if (item.restaurantId === id) {
+                setLiked(true);
+            }
+        });
+    }, [favRestaurants, id])
+
+    const favRestaurantOnClick = async () => {
+        const response = await favoriteRestaurant(currentUser._id, id, restDetail.name);
+        console.log("favRestaurantOnClick");
+        console.log(response);
+        setLiked(true);
+    };
+
+    const unFavRestaurantOnClick = async () => {
+        const response = await unfavoriteRestaurant(currentUser._id, id);
+        console.log(response);
+        setLiked(false);
+     };
+
+
+    const renderFav = useMemo( () => {
+        if (currentUser && currentUser.role === "USER") {
+            if (liked) {
+                return (<div className="ms-3"> <i class="bi bi-star-fill" onClick={unFavRestaurantOnClick}> <span >Liked the restaurant</span></i></div>)
+            } else {
+                return (<div className="ms-3"> <i class="bi bi-star" onClick={favRestaurantOnClick}> Like the restaurant</i></div>)
+            }
+        }
+    }, [currentUser, liked])
+    return (
+        <>
+            <ul className="list-group">
+                {
+                    restDetail && <DetailItem result={restDetail} />
                 }
-            } 
-            })()
-    }
-    </div>
-    </>
-        
+            </ul>
+            <div>
+
+                {renderFav}
+       
+            </div>
+        </>
+
     );
 }
 export default DetailList;

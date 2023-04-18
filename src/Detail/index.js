@@ -6,7 +6,8 @@ import DealList from "./deal-list";
 
 import {useParams } from 'react-router-dom';
 
-function Detail() {
+function Detail(props) {
+
     return (
         <div>
             <DetailList/>

@@ -1,15 +1,27 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { profileThunk, logoutThunk} from "./users-thunks";
 import {useNavigate} from "react-router";
 import Nav from "../nav";
 
+
+// This is to display user's favorite restaurants
+import {findFavoriteRestaurantsByUserId} from "./favoriteRestaurant-service.js";
+
 function ProfileScreen() {
     const { currentUser } = useSelector(state => state.users);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    /* This is to display user's favorite restaurants*/
+    const [favRestaurant, setFavRestaurant] = useState([]);
+    const fetchFavoriteRestaurants = async () => {
+        const response = await findFavoriteRestaurantsByUserId(currentUser._id);
+        setFavRestaurant(response);
+    };
+   /* This is to display user's favorite restaurants*/
     useEffect(() => {
         dispatch(profileThunk());
+        fetchFavoriteRestaurants();
     }, []);
     return (
         <div>
@@ -33,6 +45,13 @@ function ProfileScreen() {
                                 <span>Restaurant Name: {currentUser.restaurantName}</span><br/>
                             </>
                         )}
+                        {/* This is to display user's favorite restaurants */}
+                        <ul>
+                            {favRestaurant.map((item) => (
+                                <li className="list-group-item">
+                                    <h3>{item.restaurantName}</h3>
+                                </li>))}
+                        </ul>
                     </div>
                 )}
             </div>

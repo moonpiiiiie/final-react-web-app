@@ -52,7 +52,8 @@ function ReviewList() {
     return (
         <>
        
-        {currentUser && currentUser.role==="USER" && currentUser.canReview ? <div className="col-md-6">
+        {currentUser && currentUser.role==="USER" && currentUser.canReview ? 
+        <div className="col-md-6 m-3">
                 <h1>Leave your Reviews</h1>  
                 <textarea value={leaveReview} 
                 className="form-control mb-3" 

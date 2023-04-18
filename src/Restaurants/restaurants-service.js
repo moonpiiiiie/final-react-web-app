@@ -12,8 +12,7 @@ export const findAllRestaurants = async () => {
 
 export const findRestaurantById = async (id) => {
     const response = await axios.get(`${RESTAURANTS_API_URL}/${id}`);
-    console.log(response);
-    debugger;
+   
     return response.data;
 };
 
