@@ -10,7 +10,6 @@ function Nav() {
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const active = paths[1];
-    // console.log("active", active)
 
     // find the current user
     const { currentUser } = useSelector(state => state.users);

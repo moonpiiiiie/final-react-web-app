@@ -10,18 +10,21 @@ export const findAllUsers = async () => {
     return response.data;
 };
 
-export const findUserById = (id) => {
-    return axios.get(`${USERS_API_URL}/${id}`).then((response) => response.data);
+export const findUserById = async (id) => {
+  const response = await axios.get(`${USERS_API_URL}/profile/${id}`);
+  return response.data;
 };
 
 export const createUser = (user) => {
     return axios.post(USERS_API_URL, user);
 };
 
-export const updateUser = (newUser) => {
-    console.log(newUser);
-    debugger;
-    return axios.put(`${USERS_API_URL}/${newUser._id}`, newUser);
+export const updateUser = (user) => {
+    return api.put(`${USERS_API_URL}/${user._id}`, user);
+};
+
+export const updateOtherUser = (user) => {
+    return axios.put(`${USERS_API_URL}/update/${user._id}`, user);
 };
 
 export const deleteUser = (id) => {

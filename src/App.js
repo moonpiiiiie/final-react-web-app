@@ -5,12 +5,13 @@ import {Routes, Route} from "react-router";
 import HelloWorld from "./hello";
 import HomePage from "./HomePage";
 import Search from "./Search";
-import ProfileScreen from "./Users/profile-screen";
-import AdminScreen from "./Users/admin-screen";
+import ProfileScreen from "./Profile/profile-screen";
+import ProfileUidScreen from "./Profile/profile-screen-uid";
+import AdminScreen from "./Profile/Admin/admin-screen";
 import LoginScreen from "./Users/login-screen";
 
 import {Provider} from "react-redux";
-import store from "./store.js";
+import store from "./store";
 import RegisterScreen from "./Users/register-screen";
 import Detail from "./Detail";
 import React from "react";
@@ -32,6 +33,7 @@ function App() {
                           <Route path="/hello" element={<HelloWorld/>}/>
                           <Route path="/login" element={<LoginScreen/>}/>
                           <Route path="/profile" element={<ProfileScreen/>}/>
+                          <Route path="/profile/:uid" element={<ProfileUidScreen/>}/>
                           <Route path="/admin" element={<AdminScreen/>}/>
                           <Route path="/register" element={<RegisterScreen/>}/>
                       </Routes>
