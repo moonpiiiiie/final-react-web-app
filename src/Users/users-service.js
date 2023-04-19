@@ -23,6 +23,10 @@ export const updateUser = (user) => {
     return api.put(`${USERS_API_URL}/${user._id}`, user);
 };
 
+export const updateOtherUser = (user) => {
+    return axios.put(`${USERS_API_URL}/update/${user._id}`, user);
+};
+
 export const deleteUser = (id) => {
     return axios.delete(`${USERS_API_URL}/${id}`);
 };

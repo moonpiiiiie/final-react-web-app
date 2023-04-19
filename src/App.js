@@ -7,7 +7,7 @@ import HomePage from "./HomePage";
 import Search from "./Search";
 import ProfileScreen from "./Profile/profile-screen";
 import ProfileUidScreen from "./Profile/profile-screen-uid";
-import AdminScreen from "./Users/admin-screen";
+import AdminScreen from "./Profile/Admin/admin-screen";
 import LoginScreen from "./Users/login-screen";
 
 import {Provider} from "react-redux";

@@ -17,10 +17,8 @@ function ProfileUidScreen() {
     const [followers, setFollowers] = useState([]);
 
     const fetchProfile = async () => {
-        console.log("fetchProfile");
         const user = await findUserById(uid);
         await setProfile(user);
-        // await dispatch(profileThunk());
     }
 
     const follow = async () => {
@@ -75,7 +73,7 @@ function ProfileUidScreen() {
                         <h2>Followers</h2>
                         <ul className="list-group">
                             {followers.map((follower) => (
-                                <li className="list-group-item">
+                                <li key={follower.following._id} className="list-group-item">
                                     <Link to={`/profile/${follower.following._id}`}>{follower.following.username}</Link>
                                 </li>
                             ))}

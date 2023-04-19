@@ -9,7 +9,7 @@ import dealsReducer from './Deals/deals-reducer';
 const store = configureStore({
         reducer: {
             users: usersReducer,
-            follows: followsReducer
+            follows: followsReducer,
             restaurants: restaurantsReducer,
             reviews: reviewsReducer,
             deals: dealsReducer
