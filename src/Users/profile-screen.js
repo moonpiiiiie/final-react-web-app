@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { profileThunk, logoutThunk} from "./users-thunks";
 import {findReviewByUserId} from "../Reviews/reviews-service.js";
+import {findDealByUserId} from "../Deals/deals-service.js";
 import {useNavigate} from "react-router";
 import Nav from "../nav";
 
@@ -20,6 +21,7 @@ function ProfileScreen() {
         setFavRestaurant(response);
     };
    /* This is to display user's favorite restaurants*/
+
     /* This is to display user's reviews*/
     const [reviews, setReviews] = useState([]);
     const fetchReviews = async () => {
@@ -27,10 +29,20 @@ function ProfileScreen() {
         setReviews(response);
     };
     /* This is to display user's reviews*/
+
+    /* This is to display user's deals*/
+    const [deals, setDeals] = useState([]);
+    const fetchDeals = async () => {
+        const response = await findDealByUserId(currentUser._id);
+        setDeals(response);
+    };
+    /* This is to display user's deals*/
+
     useEffect(() => {
         dispatch(profileThunk());
         fetchFavoriteRestaurants();
         fetchReviews();
+        fetchDeals();
     }, []);
     return (
         <div>
@@ -68,8 +80,7 @@ function ProfileScreen() {
                             <table>
                              <thead>
                                 <tr>
-                                    <th>Review</th>
-                                 
+                                    <th>Review</th>  
                                     <th>Restaurant</th>
                                 </tr>
                             </thead>
@@ -86,7 +97,26 @@ function ProfileScreen() {
                             </tbody>
                             </table>    
                         {/* This is to display user's reviews */}
-                        
+                         {/* This is to display user's reviews */}
+                         <table>
+                             <thead>
+                                <tr>
+                                    <th>Deals</th>  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {deals.map((item) => (
+                                    <tr>
+                    
+
+                                     <a href={'http://localhost:3000/detail/' + item.restaurantID}>
+                                        <td>{item.deal}</td>
+                                    </a>  
+                                    </tr>
+                                ))}
+                            </tbody>
+                            </table>    
+                        {/* This is to display user's reviews */}
                     </div>
                 )}
             </div>
