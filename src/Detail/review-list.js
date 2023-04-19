@@ -8,7 +8,7 @@ import { createReviewThunk } from "../Reviews/reviews-thunks";
 
 
 const REVIEW_URL = "http://localhost:4000/api/reviews/restaurant/";
-
+const DETAIL_URL = "http://localhost:4000/api/detail/";
 /*
     * This component is used to display restraunt.
  */
@@ -16,9 +16,24 @@ function ReviewList() {
     const {id} = useParams();
     const [result, setResult] = useState([]);
     let [leaveReview, setLeaveReview] = useState('');
-   
+    
     const dispatch = useDispatch();
-  
+    const [restaurant, setRestaurant] = useState([]);
+   
+    useEffect(() => {
+        const asyncData = async () => {
+            // This is the node API url for detail restraurant informations
+            const response = await axios(DETAIL_URL + id);
+            setRestaurant(response.data);
+          
+        };
+        // make sure we only run asyncData() once
+        if(Object.keys(restaurant).length === 0){
+            dispatch(profileThunk());
+            asyncData();
+        }
+    },[]);
+ 
     useEffect(() => {
         const asyncData = async () => {
             // This is the node API url for detail restraurant informations
@@ -27,7 +42,7 @@ function ReviewList() {
            
         };
         // make sure we only run asyncData() once
-        if(result.length === 0){
+        if(Object.keys(result).length === 0){
             dispatch(profileThunk());
             asyncData();
         }
@@ -39,6 +54,7 @@ function ReviewList() {
     const submitReview = () => {
         const templateReview = {
             "restaurantID": id,
+            "restaurantName": restaurant.name,
             "userID": currentUser._id,
             "username": currentUser.username
         }
@@ -54,7 +70,7 @@ function ReviewList() {
        
         {currentUser && currentUser.role==="USER" && currentUser.canReview ? 
         <div className="col-md-6 m-3">
-                <h1>Leave your Reviews</h1>  
+                <h1>Leave Your Reviews</h1>  
                 <textarea value={leaveReview} 
                 className="form-control mb-3" 
                 id="exampleFormControlTextarea1" 

@@ -40,8 +40,7 @@ const ReviewItem = (
                     <div className="col-md-8">
                         <div className="card-body">
                         <h5 className="card-title"> {result.username}</h5>
-                        <p className="card-text"> {result.review}</p>
-                        
+                        <p className="card-text"> {result.review}</p>       
                         </div>
                     </div>
                     <div className="col-md-2">

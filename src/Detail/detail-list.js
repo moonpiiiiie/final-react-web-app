@@ -21,11 +21,10 @@ function DetailList() {
             // This is the node API url for detail restraurant informations
             const response = await axios(DETAIL_URL + id);
             setRestDetail(response.data);
-       
         };
         // make sure we only run asyncData() once
         if (Object.keys(restDetail).length === 0) {
-            asyncData();
+            asyncData();   
         }
     }, [id]);
 
@@ -35,7 +34,6 @@ function DetailList() {
                 setFavRestaurants(data);
             });
         };
-  
         if (currentUser) {
             loadScreen(id);
         }
@@ -51,7 +49,6 @@ function DetailList() {
 
     const favRestaurantOnClick = async () => {
         const response = await favoriteRestaurant(currentUser._id, id, restDetail.name);
-       
         setLiked(true);
     };
 

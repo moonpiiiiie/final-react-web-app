@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { profileThunk, logoutThunk} from "./users-thunks";
+import {findReviewByUserId} from "../Reviews/reviews-service.js";
 import {useNavigate} from "react-router";
 import Nav from "../nav";
 
@@ -19,9 +20,17 @@ function ProfileScreen() {
         setFavRestaurant(response);
     };
    /* This is to display user's favorite restaurants*/
+    /* This is to display user's reviews*/
+    const [reviews, setReviews] = useState([]);
+    const fetchReviews = async () => {
+        const response = await findReviewByUserId(currentUser._id);
+        setReviews(response);
+    };
+    /* This is to display user's reviews*/
     useEffect(() => {
         dispatch(profileThunk());
         fetchFavoriteRestaurants();
+        fetchReviews();
     }, []);
     return (
         <div>
@@ -51,10 +60,33 @@ function ProfileScreen() {
                                 <li className="list-group-item">
                                     <a href={'http://localhost:3000/detail/' + item.restaurantId}>
                                     <h3>{item.restaurantName}</h3>
-                                    </a>
-                                   
-                                </li>))}
+                                    </a>   
+                            </li>))}
                         </ul>
+                        {/* This is to display user's favorite restaurants */}
+                        {/* This is to display user's reviews */}
+                            <table>
+                             <thead>
+                                <tr>
+                                    <th>Review</th>
+                                 
+                                    <th>Restaurant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {reviews.map((item) => (
+                                    <tr>
+                                        <td>{item.review}</td>
+
+                                     <a href={'http://localhost:3000/detail/' + item.restaurantID}>
+                                        <td>{item.restaurantName}</td>
+                                    </a>  
+                                    </tr>
+                                ))}
+                            </tbody>
+                            </table>    
+                        {/* This is to display user's reviews */}
+                        
                     </div>
                 )}
             </div>

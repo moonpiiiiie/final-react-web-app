@@ -43,32 +43,32 @@ const RestaurantItem = (
 //     },[]);
 
         return(
-            <div className="card  border-light">
+            <div className="card border-light">
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-3">
                         <a  href={'http://localhost:3000/detail/' + restaurant.id}>
-                            <img className="p-3" src={restaurant.image_url} width={200} height={200}/>
+                            <img className="p-2" src={restaurant.image_url} width={180} height={200}/>
                             </a>
+                    </div>
+                    <div className="col-md-9">
+                        <div className="card-body">
+                            <a  href={'http://localhost:3000/detail/' + restaurant.id}>
+                                <h5 className="card-title mb-3"> {restaurant.name}</h5>
+                            </a>
+                            <div className="mb-2 card-text"> 
+                                <i class="bi bi-cash-coin"></i> {restaurant.price} 
                             </div>
-                            <div className="col-md-8">
-                                <div className="card-body">
-                                    <a  href={'http://localhost:3000/detail/' + restaurant.id}>
-                                    <h5 className="card-title mb-3"> {restaurant.name}</h5>
-                                    </a>
-                                    <div className="mb-2"> <i class="bi bi-cash-coin"></i> {restaurant.price} </div>
-                                    <div className="mb-2"> <i class="bi bi-telephone"></i> {restaurant.display_phone}</div>
-                                    <div className="mb-2"> Rating: {restaurant.rating} <span></span>
+                            <div className="mb-2 card-text"> 
+                                <i class="bi bi-telephone"></i> {restaurant.display_phone}
+                            </div>
+                            <div className="mb-2"> Rating: {restaurant.rating} <span></span>
                                     {restaurant.rating>=4? (<i class="bi bi-hand-thumbs-up-fill"></i>): ""}
-                                   
-                                    </div>
-                                    <div className="mb-2"> <i class="bi bi-geo-alt"></i> {restaurant.location.display_address.join(", ")}</div>
-
-                                </div>
-                               
-                        
                             </div>
-                           
-                   
+                            <div className="mb-2"> 
+                                <i class="bi bi-geo-alt"></i> {restaurant.location.display_address.join(", ")}
+                            </div>
+                        </div>    
+                     </div>
                 </div>
                 
             </div>

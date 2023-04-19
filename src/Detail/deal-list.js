@@ -20,7 +20,7 @@ function DealList() {
   
     useEffect(() => {
         const asyncData = async () => {
-            // This is the node API url for detail restraurant informations
+            // This is the node API url for restraurant deal informations
             const response = await axios(DEAL_URL + id);
             setResult(response.data);
            
@@ -43,7 +43,7 @@ function DealList() {
           
         };
         // make sure we only run asyncData() once
-        if(result.length === 0){
+        if(Object.keys(restaurant).length === 0){
             dispatch(profileThunk());
             asyncData();
         }
