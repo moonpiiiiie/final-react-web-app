@@ -17,18 +17,16 @@ function AdminScreen() {
 
     const canReviewToggle = async(user, canReview) => {
        await updateUser({...user, canReview: canReview});
-       console.log("currentUser", currentUser);
-       console.log("user", user);
     }
 
     const updateUser = async (user) => {
         await userService.updateOtherUser(user);
         await dispatch(updateAllUsers(users.map(u => {
-                                   if (u._id === user._id) {
-                                       u = user;
-                                   }
-                                   return u;
-                               })));
+           if (u._id === user._id) {
+               u = user;
+           }
+           return u;
+       })));
     }
 
     useEffect(() => {
