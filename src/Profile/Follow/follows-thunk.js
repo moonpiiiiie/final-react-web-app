@@ -13,7 +13,7 @@ export const findFollowingByFollowedThunk = createAsyncThunk(
     'follows/findFollowed',
     async (userId) => {
         const response = await followsService.findFollowingByFollowed(userId);
-        return response.data;
+        return response;
     }
 );
 
@@ -21,7 +21,7 @@ export const findFollowedByFollowingThunk = createAsyncThunk(
     'follows/findFollowing',
     async (userId) => {
         const response = await followsService.findFollowedByFollowing(userId);
-        return response.data;
+        return response;
     }
 );
 

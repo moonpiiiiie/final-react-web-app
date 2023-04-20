@@ -10,12 +10,12 @@ export const findFollowingByFollowed = async (userId) => {
   const response = await axios.get(
     `${USERS_API_URL}/follows/followers/${userId}`
   );
-  return response;
+  return response.data;
 }
 
 export const findFollowedByFollowing = async (userId) => {
   const response = await axios.get(
-    `${USERS_API_URL}/follows/following/${userId}`, {params: userId}
+    `${USERS_API_URL}/follows/following/${userId}`
   );
   return response.data;
 }

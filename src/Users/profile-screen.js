@@ -107,8 +107,6 @@ function ProfileScreen() {
                             <tbody>
                                 {deals.map((item) => (
                                     <tr>
-                    
-
                                      <a href={'http://localhost:3000/detail/' + item.restaurantID}>
                                         <td>{item.deal}</td>
                                     </a>  

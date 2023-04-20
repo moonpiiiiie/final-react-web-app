@@ -1,53 +1,84 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { profileThunk, logoutThunk, updateUserThunk } from "../Users/users-thunks";
-import {useNavigate} from "react-router";
-
+import { Link} from "react-router-dom";
+import {findFavoriteRestaurantsByUserId} from "../Users/favoriteRestaurant-service.js";
+import {findReviewByUserId} from "../Reviews/reviews-service.js";
+import {findDealByUserId} from "../Deals/deals-service.js";
+import { findFollowedByFollowingThunk } from "./Follow/follows-thunk";
 
 function ProfileScreen() {
     const { currentUser } = useSelector((state) => state.users);
     const [profile, setProfile] = useState(currentUser);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const [followers, setFollowers] = useState([]);
+
     const fetchProfile = async () => {
         const response = await dispatch(profileThunk());
-        //initially profile is null
-        //if profile is null, set profile to response.payload
-        //so that the useEffect will not be called again
-
         setProfile(response.payload);
+    };
 
+   /* This is to display user's favorite restaurants*/
+   const [favRestaurant, setFavRestaurant] = useState([]);
+        const fetchFavoriteRestaurants = async () => {
+        const response = await findFavoriteRestaurantsByUserId(profile._id);
+        setFavRestaurant(response);
     };
-    const loadScreen = async () => {
-        await fetchProfile();
+
+    /* This is to display user's reviews*/
+    const [reviews, setReviews] = useState([]);
+    const fetchReviews = async () => {
+        const response = await findReviewByUserId(profile._id);
+        setReviews(response);
     };
-     const updateProfile = async () => {
-        await dispatch(updateUserThunk(profile));
-      };
+
+     /* This is to display user's deals*/
+    const [deals, setDeals] = useState([]);
+    const fetchDeals = async () => {
+        const response = await findDealByUserId(profile._id);
+        setDeals(response);
+    };
+
+    const fetchFollowers = async () => {
+        const response = await dispatch(findFollowedByFollowingThunk(profile._id));
+        setFollowers(response.payload);
+    }
+
+    const updateProfile = async () => {
+       await dispatch(updateUserThunk(profile));
+    };
+
     useEffect(() => {
-        loadScreen();
+        fetchProfile();
     }, []);
 
+    useEffect(() => {
+        if (profile) {
+            fetchFollowers();
+            fetchFavoriteRestaurants();
+            fetchReviews();
+            fetchDeals();
+        }
+    }, [profile]);
+
     return (
-        <div>
+        <div className="container-fluid">
             <div>
                 {profile && (
                     <div>
-                        <h2>Welcome {currentUser.username}</h2>
-                        <span>First Name: {currentUser.firstName}</span><br/>
-                        <span>Last Name: {currentUser.lastName}</span><br/>
-                        <span>Password: {currentUser.password}</span><br/>
-                        <span>Email: {currentUser.email}</span><br/>
-                        <span>Role: {currentUser.role}</span><br/>
-                        {currentUser.restaurantID && currentUser.restaurantID !== "" && (
+                        <h2>Welcome {profile.username}</h2>
+                        <span>First Name: {profile.firstName}</span><br/>
+                        <span>Last Name: {profile.lastName}</span><br/>
+                        <span>Email: {profile.email}</span><br/>
+                        {profile.restaurantID && profile.restaurantID !== "" && (
                             <>
-                                <span>Restaurant ID: {currentUser.restaurantID}</span><br/>
+                                <span>Restaurant ID: {profile.restaurantID}</span><br/>
                             </>
                         )}
 
-                        {currentUser.restaurantName && currentUser.restaurantName !== "" && (
+                        {profile.restaurantName && profile.restaurantName !== "" && (
                             <>
-                                <span>Restaurant Name: {currentUser.restaurantName}</span><br/>
+                                <span>Restaurant Name: {profile.restaurantName}</span><br/>
                             </>
                         )}
                         <br/>
@@ -97,6 +128,56 @@ function ProfileScreen() {
                             />
                          </div>
                          <div className=" float-end mt-2" onClick={updateProfile}><button className="btn btn-success">Save</button></div>
+                    </div>
+                )}
+               <br/>
+
+                {followers && profile && profile.role === "USER" && (
+                 <div>
+                      <h2>Following</h2>
+                      <ul className="list-group">
+                          {followers.map((follower) => (
+                              <li key={follower.following._id} className="list-group-item">
+                                  <Link to={`/profile/${follower.followed._id}`}>{follower.followed.username}</Link>
+                              </li>
+                          ))}
+                      </ul>
+                      <br/>
+                      <h2>My Favorite Restaurants</h2>
+                      <ul className="list-group">
+                          {favRestaurant.map((item) => (
+                              <li className="list-group-item">
+                                  <a href={'http://localhost:3000/detail/' + item.restaurantId}>
+                                  <h3>{item.restaurantName}</h3>
+                                  </a>
+                          </li>))}
+                      </ul>
+                      <br/>
+                    <h2>My Reviews</h2>
+                    <ul className="list-group">
+                            {reviews.map((item) => (
+                            <li className="list-group-item">
+                                     {item.review}
+                                     <a href={'http://localhost:3000/detail/' + item.restaurantID}>
+                                        <span>{item.restaurantName}</span>
+                                    </a>
+                            </li>))}
+                    </ul>
+                 </div>
+                )}
+
+                {deals && profile && profile.role === "OWNER" && (
+                    <div>
+                        <h2>My Deals</h2>
+                        <ul className="list-group">
+                            {deals.map((item) => (
+                                <li className="list-group-item">
+                                     <a href={'http://localhost:3000/detail/' + item.restaurantID}>
+                                                                            <td>{item.deal}</td>
+                                                                        </a>
+                                                                        {console.log(item.restaurantID)}
+                                </li>))}
+                        </ul>
                     </div>
                 )}
             </div>

@@ -26,6 +26,7 @@ export const updateUserThunk = createAsyncThunk(
     "users/update",
     async (user) => {
         await userService.updateUser(user);
+        console.log("updateUserThunk: ", user);
         return user;
     }
 );
