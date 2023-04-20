@@ -4,7 +4,7 @@ import {profileThunk, logoutThunk, updateUserThunk } from "../Users/users-thunks
 import {useParams} from "react-router";
 import {findUserById} from "../Users/users-service";
 import { useNavigate, Link } from "react-router-dom";
-import {reactLocalStorage} from 'reactjs-localstorage';
+import {findFavoriteRestaurantsByUserId} from "../Users/favoriteRestaurant-service.js";
 import {createFollowThunk, findFollowingByFollowedThunk, unfollowThunk, findIsFollowedByIdThunk} from "./Follow/follows-thunk";
 
 function ProfileUidScreen() {
@@ -20,6 +20,13 @@ function ProfileUidScreen() {
         const user = await findUserById(uid);
         await setProfile(user);
     }
+
+    /* This is to display user's favorite restaurants*/
+    const [favRestaurant, setFavRestaurant] = useState([]);
+    const fetchFavoriteRestaurants = async () => {
+    const response = await findFavoriteRestaurantsByUserId(uid);
+    setFavRestaurant(response);
+    };
 
     const follow = async () => {
         await dispatch(createFollowThunk({followed: uid, following: currentUser._id}));//currentUser follow other user
@@ -57,6 +64,7 @@ function ProfileUidScreen() {
 
         if (currentUser) {
             isFollow();
+            fetchFavoriteRestaurants();
         }
     }, [currentUser, uid, isFollowed]);
 
@@ -79,6 +87,18 @@ function ProfileUidScreen() {
                             ))}
                         </ul>
                    </div>
+
+                   <div>
+                   <h2>My Favorite Restaurants</h2>
+                   <ul className="list-group">
+                       {favRestaurant.map((item) => (
+                           <li className="list-group-item">
+                               <a href={'http://localhost:3000/detail/' + item.restaurantId}>
+                               <h3>{item.restaurantName}</h3>
+                               </a>
+                       </li>))}
+                   </ul>
+                  </div>
                </div>
              )}
          </div>
