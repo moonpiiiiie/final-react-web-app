@@ -2,31 +2,55 @@ import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { profileThunk, logoutThunk, updateUserThunk } from "../Users/users-thunks";
 import {useNavigate} from "react-router";
-
+import {findFavoriteRestaurantsByUserId} from "../Users/favoriteRestaurant-service.js";
+import {findReviewByUserId} from "../Reviews/reviews-service.js";
+import {findDealByUserId} from "../Deals/deals-service.js";
 
 function ProfileScreen() {
     const { currentUser } = useSelector((state) => state.users);
     const [profile, setProfile] = useState(currentUser);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+     /* This is to display user's favorite restaurants*/
+    const [favRestaurant, setFavRestaurant] = useState([]);
+    const fetchFavoriteRestaurants = async () => {
+        const response = await findFavoriteRestaurantsByUserId(currentUser._id);
+        setFavRestaurant(response);
+    };
+   /* This is to display user's favorite restaurants*/
+
+    /* This is to display user's reviews*/
+    const [reviews, setReviews] = useState([]);
+    const fetchReviews = async () => {
+        const response = await findReviewByUserId(currentUser._id);
+        setReviews(response);
+    };
+    /* This is to display user's reviews*/
+
+    /* This is to display user's deals*/
+    const [deals, setDeals] = useState([]);
+    const fetchDeals = async () => {
+        const response = await findDealByUserId(currentUser._id);
+        setDeals(response);
+    };
+    /* This is to display user's deals*/
     const fetchProfile = async () => {
         const response = await dispatch(profileThunk());
-        //initially profile is null
-        //if profile is null, set profile to response.payload
-        //so that the useEffect will not be called again
-
         setProfile(response.payload);
+    };
 
-    };
-    const loadScreen = async () => {
-        await fetchProfile();
-    };
      const updateProfile = async () => {
         await dispatch(updateUserThunk(profile));
       };
     useEffect(() => {
-        loadScreen();
+        fetchProfile();
     }, []);
+
+    useEffect(() => {
+        fetchFavoriteRestaurants();
+        fetchReviews();
+        fetchDeals();
+    }, [profile]);
 
     return (
         <div>
@@ -97,6 +121,55 @@ function ProfileScreen() {
                             />
                          </div>
                          <div className=" float-end mt-2" onClick={updateProfile}><button className="btn btn-success">Save</button></div>
+                           {/* This is to display user's favorite restaurants */}
+                        <ul>
+                            {favRestaurant.map((item) => (
+                                <li className="list-group-item">
+                                    <a href={'http://localhost:3000/detail/' + item.restaurantId}>
+                                    <h3>{item.restaurantName}</h3>
+                                    </a>   
+                            </li>))}
+                        </ul>
+                        {/* This is to display user's favorite restaurants */}
+                        {/* This is to display user's reviews */}
+                            <table>
+                             <thead>
+                                <tr>
+                                    <th>Review</th>  
+                                    <th>Restaurant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {reviews.map((item) => (
+                                    <tr>
+                                        <td>{item.review}</td>
+
+                                     <a href={'http://localhost:3000/detail/' + item.restaurantID}>
+                                        <td>{item.restaurantName}</td>
+                                    </a>  
+                                    </tr>
+                                ))}
+                            </tbody>
+                            </table>    
+                        {/* This is to display user's reviews */}
+                         {/* This is to display user's reviews */}
+                         <table>
+                             <thead>
+                                <tr>
+                                    <th>Deals</th>  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {deals.map((item) => (
+                                    <tr>
+                                     <a href={'http://localhost:3000/detail/' + item.restaurantID}>
+                                        <td>{item.deal}</td>
+                                    </a>  
+                                    </tr>
+                                ))}
+                            </tbody>
+                            </table>    
+                        {/* This is to display user's reviews */}
                     </div>
                 )}
             </div>
