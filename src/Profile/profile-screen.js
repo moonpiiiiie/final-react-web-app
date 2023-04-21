@@ -62,8 +62,10 @@ function ProfileScreen() {
     }, [profile]);
 
        return (
+            <>
             <div className="container-fluid">
-                <div>
+                <div className="row m-1">
+                    <div className="col-12">
                     {profile && (
                         <div>
                             <h2>Welcome {profile.username}</h2>
@@ -127,13 +129,17 @@ function ProfileScreen() {
                                     onChange={(e) => setProfile({...profile, email: e.target.value})}
                                 />
                              </div>
-                             <div className=" float-end mt-2" onClick={updateProfile}><button className="btn btn-success">Save</button></div>
+                             <div className=" float-end m-2" onClick={updateProfile}><button className="btn btn-success">Save</button></div>
                         </div>
                     )}
+                   </div>
+
                    <br/>
 
+                    <div>
                     {followers && profile && profile.role === "USER" && (
-                     <div>
+                          <div className="row">
+                          <div className="col-4">
                           <h2>Following</h2>
                           <ul className="list-group">
                               {followers.map((follower) => (
@@ -142,7 +148,9 @@ function ProfileScreen() {
                                   </li>
                               ))}
                           </ul>
+                          </div>
                           <br/>
+                          <div className="col-4">
                           <h2>My Favorite Restaurants</h2>
                           <ul className="list-group">
                               {favRestaurant.map((item) => (
@@ -152,7 +160,9 @@ function ProfileScreen() {
                                       </a>
                               </li>))}
                           </ul>
+                          </div>
                           <br/>
+                        <div className="col-4">
                         <h2>My Reviews</h2>
                         <ul className="list-group">
                                 {reviews.map((item) => (
@@ -163,9 +173,11 @@ function ProfileScreen() {
                                         </a>
                                 </li>))}
                         </ul>
+                       </div>
                      </div>
                     )}
-
+                    </div>
+                    </div>
                     {deals && profile && profile.role === "OWNER" && (
                         <div>
                             <h2>My Deals</h2>
@@ -179,8 +191,8 @@ function ProfileScreen() {
                             </ul>
                         </div>
                     )}
-                </div>
             </div>
+            </>
         );
 }
 

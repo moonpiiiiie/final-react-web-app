@@ -71,7 +71,7 @@ function ProfileUidScreen() {
     }, [currentUser, uid, isFollowed]);
 
    return(
-         <div>
+         <div className="container-fluid">
              {profile && (
                 <div>
                      <div>
