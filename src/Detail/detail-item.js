@@ -20,21 +20,19 @@ const DetailItem = (
 ) => {
     return(
         <>
-            <h1 className="m-3"> {result.name}</h1>
+            
             <div className="row">
                     <div className="col-md-4">
                     
-                            <img className="p-3" src={result.image_url} width={300} height={300}/>
+                            <img style={{borderRadius:"40px"}} class="p-3" src={result.image_url} width={300} height={300}/>
                            
                             </div>
                             <div className="col-md-8">
                                 <div className="card-body mt-3">
-                                   
-                                    <div className="pb-3"> <i class="bi bi-cash-coin"></i> {result.price} </div>
-                                    <div className="pb-3"> <i class="bi bi-telephone"></i> {result.display_phone}</div>
-                                    <div className="pb-3"> Rating: {result.rating}</div>
-                                    {/* <div> <i class="bi bi-geo-alt"></i> {result.location.display_address.join(", ")
-}</div> */}
+                                <h1 className=""> {result.name}</h1>
+                                    <div className="pb-2"> <i class="bi bi-cash-coin"></i> {result.price} </div>
+                                    <div className="pb-2"> <i class="bi bi-telephone"></i> {result.display_phone}</div>
+                                    <div className="pb-2"> Rating: {result.rating}</div>
                                    
                                 </div>
                             </div>

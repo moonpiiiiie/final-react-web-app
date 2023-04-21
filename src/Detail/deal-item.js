@@ -33,15 +33,26 @@ const DealItem = (
     return(
         <>
          
+         <div class="col-md-8">
+        <div class="media g-mb-30 media-comment">
+       
+            <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+
+              <div class="g-mb-15">
+              
+                
+                <h5 class="g-color-gray-dark-v1 mb-0">{result.username}</h5>
+                <span class="g-color-gray-dark-v4 g-font-size-12">{result.date.toString().substring(0,10)}</span>
+              </div>
+        
+              <p>{result.deal}</p>
+              {(currentUser && currentUser._id === result.userID) ? (
+                        <button onClick={() => deleteDealHandler(result._id)} className="btn btn-sm rounded-pill">Delete</button>) : ""}
            
-            <div className="card col-md-6">
-                    <div className="card-body">
-                        <h5 className="card-title"> {result.username}</h5>
-                        <p className="card-text"> {result.deal}</p>
-                        {(currentUser && currentUser._id === result.userID) ? (
-                        <button onClick={() => deleteDealHandler(result._id)} className="btn btn-sm btn-danger">Delete</button>) : ""}
-                    </div>
             </div>
+        </div>
+    </div>
+      
             
         </>
     )

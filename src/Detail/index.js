@@ -4,6 +4,7 @@ import DetailList from "./detail-list";
 import ReviewList from "./review-list";
 import DealList from "./deal-list";
 
+
 function Detail(props) {
     return (
         <div>

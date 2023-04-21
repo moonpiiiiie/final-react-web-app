@@ -17,7 +17,7 @@ const ReviewItem = (
             userID: "{ type: String, required: true }",
             username: "{ type: String, required: true }",
             review: "{ type: String, required: true }",
-            date: Date.now
+            date: Date,
         }
 
     }
@@ -30,29 +30,30 @@ const ReviewItem = (
     }
     return(
         <>
-            <div className="card col-md-6">
-                <div className="row no-gutters">
-                    <div className="col-md-2">
-                    <div className="card-body">
-                        <Avatar sx={{ bgcolor: deepPurple[500],  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
-                        </div>
-                    </div>
-                    <div className="col-md-8">
-                        <div className="card-body">
-                        <h5 className="card-title"> {result.username}</h5>
-                        <p className="card-text"> {result.review}</p>       
-                        </div>
-                    </div>
-                    <div className="col-md-2">
-                    <div className="card-body">
-                        {(currentUser && currentUser._id === result.userID) ? (
-                        <button onClick={() => deleteReviewHandler(result._id)} className="btn btn-sm btn-danger rounded-pill float-end">Delete</button>) : ""}
-                   </div>
-                    </div>
-                </div>
+         <div class="col-md-8">
+        <div class="media g-mb-30 media-comment">
+       
+            <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+
+              <div class="g-mb-15">
+               <Avatar id="avatar" sx={{ bgcolor: deepPurple[500],  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
+                
+                <h5 class="g-color-gray-dark-v1 mb-0">{result.username}</h5>
+                <span class="g-color-gray-dark-v4 g-font-size-12">{result.date.toString().substring(0,10)}</span>
+              </div>
+        
+              <p>{result.review}</p>
+              {(currentUser && currentUser._id === result.userID) ? (
+              <button onClick={() => deleteReviewHandler(result._id)} className="btn btn-sm rounded-pill mb-3">Delete</button>) : ""}
+           
             </div>
+        </div>
+    </div>
+    </>
+    
+
             
-        </>
+      
     )
 }
 export default ReviewItem;

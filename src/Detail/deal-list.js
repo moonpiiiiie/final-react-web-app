@@ -72,9 +72,11 @@ function DealList() {
                 className="form-control mb-3" 
                 id="exampleFormControlTextarea1" 
                 rows="3" 
-                onChange={(event) => setLeaveDeal(event.target.value)}>
+                onChange={(event) => setLeaveDeal(event.target.value)}
+                style={{backgroundColor:"#eee"}}
+                placeholder="Add a new deal here">
                 </textarea>
-                <button className="btn btn-primary mb-3" onClick={submitDeal}>Add a deal</button>
+                <button className="btn mb-3 rounded-pill" onClick={submitDeal}>Add a deal</button>
             </div> : ""}
          <div className="m-3">
             <h1>Deals</h1>  
