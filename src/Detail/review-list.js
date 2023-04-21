@@ -5,7 +5,7 @@ import ReviewItem from "./review-item";
 import {useParams, Link } from 'react-router-dom';
 import {profileThunk} from "../Users/users-thunks";
 import { createReviewThunk } from "../Reviews/reviews-thunks";
-
+import "../HomePage/index.css";
 
 const REVIEW_URL = "http://localhost:4000/api/reviews/restaurant/";
 const DETAIL_URL = "http://localhost:4000/api/detail/";
@@ -72,22 +72,28 @@ function ReviewList() {
         <div className="col-md-6 m-3">
                 <h1>Leave Your Reviews</h1>  
                 <textarea value={leaveReview} 
-                className="form-control mb-3" 
-                id="exampleFormControlTextarea1" 
+                className="form-control mb-3" style={{backgroundColor:"#fafafa"}}
+                placeholder="Leave your reviews here"
+                
                 rows="3" 
-                onChange={(event) => setLeaveReview(event.target.value)}>
+                onChange={(event) => setLeaveReview(event.target.value)}
+                >
                 </textarea>
-                <button className="btn btn-primary mb-3 rounded-pill " onClick={submitReview}>Submit</button>
+                <button className="btn mb-3 rounded-pill " onClick={submitReview}>Submit</button>
             </div> : ""}
          <div className="m-3">
             <h1>Reviews</h1>  
             {!currentUser ? <Link to="http://localhost:3000/login">Log in to leave your reviews</Link> : ""}
-            <ul className="list-group">
-       {
+           <div className="container">
+              <div className="row">
+              {
            result && result.map(result =>
                <ReviewItem result={result}/>)
        }
-   </ul></div>
+                </div>
+           </div>
+    
+   </div>
       
         </>
    

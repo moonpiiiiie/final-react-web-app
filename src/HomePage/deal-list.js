@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import DealItem from "./deal-item";
 import {useParams } from 'react-router-dom';
 import {profileThunk} from "../Users/users-thunks";
-
+import "./index.css";
 
 const ALL_DEAL_URL = "http://localhost:4000/api/deals";
 
@@ -37,14 +37,14 @@ function DealList() {
         <>
         
        
-         <div className="m-3">
-            <h1>Recent Deals</h1>  
-            <ul className="list-group">
+         <div className="">
+            <h1 className="fancy mb-3 mt-3 text-center" style={{ fontWeight: 'bold' }}>Recent Deals</h1>  
+            <div class="row row-cols-1 row-cols-md-3 g-4">
        {
            result && result.map(result =>
                <DealItem result={result}/>)
        }
-   </ul></div>
+   </div></div>
       
         </>
    

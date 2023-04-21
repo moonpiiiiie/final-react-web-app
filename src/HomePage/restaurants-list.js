@@ -36,15 +36,17 @@ function RestaurantList() {
     const zipcode = currentUser ? currentUser.zipcode : '95113';
 
     return (
-        <div className="m-3">
-
-            <div className="row">
-                <h1>Dog-friendly restaurants nearby</h1>
+        <div className="">
+           
+                <h1 className="ancy mb-3 mt-3 text-center" style={{ fontWeight: 'bold' }}>Restaurants nearby</h1>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                 {
                     restaurants && restaurants.map(Restaurant =>
                         <RestaurantItem restaurant={Restaurant} />)
                 }
-            </div>
+                </div>
+                
+           
 
         </div>
     );

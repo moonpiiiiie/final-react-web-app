@@ -1,5 +1,7 @@
 
 import React, {useEffect, useState} from "react";
+import '../index.css';
+import './index.css';
 // import {useParams} from "react-router-dom";
 // import {useDispatch} from "react-redux";
 // import {profileThunk} from "../Users/users-thunks";
@@ -43,35 +45,36 @@ const RestaurantItem = (
 //     },[]);
 
         return(
-            <div className="card border-light">
-                <div className="row">
-                    <div className="col-md-3">
-                        <a  href={'http://localhost:3000/detail/' + restaurant.id}>
-                            <img className="p-2" src={restaurant.image_url} width={180} height={200}/>
-                            </a>
-                    </div>
-                    <div className="col-md-9">
-                        <div className="card-body">
-                            <a  href={'http://localhost:3000/detail/' + restaurant.id}>
-                                <h5 className="card-title mb-3"> {restaurant.name}</h5>
-                            </a>
-                            <div className="mb-2 card-text"> 
-                                <i class="bi bi-cash-coin"></i> {restaurant.price} 
-                            </div>
-                            <div className="mb-2 card-text"> 
-                                <i class="bi bi-telephone"></i> {restaurant.display_phone}
-                            </div>
-                            <div className="mb-2"> Rating: {restaurant.rating} <span></span>
+          
+                    <div className="col">
+                    <div className="card rounded border-white h-100">
+                    <a  href={'http://localhost:3000/detail/' + restaurant.id}>
+                    <img src={restaurant.image_url} class="card-img-top rounded"
+                        alt="Hollywood Sign on The Hill" />
+                        </a>
+                    <div className="card-body h-100">
+                        <h5 className="card-title"> <a href={'http://localhost:3000/detail/' + restaurant.id}>{restaurant.name}</a></h5>
+                        <p className="card-text">
+                        <i className="bi bi-cash-coin"></i> {restaurant.price} 
+                        </p>
+                        <p className="card-text">{restaurant.display_phone && (<i className="bi bi-telephone">{restaurant.display_phone}</i> )}
+                        
+                        </p>
+                        <p className="card-text">
+                       Rating: {restaurant.rating} <span></span>
                                     {restaurant.rating>=4? (<i class="bi bi-hand-thumbs-up-fill"></i>): ""}
-                            </div>
-                            <div className="mb-2"> 
-                                <i class="bi bi-geo-alt"></i> {restaurant.location.display_address.join(", ")}
-                            </div>
-                        </div>    
-                     </div>
-                </div>
+                        </p>
+                        <p className="card-text">
+                        <i className="bi bi-geo-alt"></i> {restaurant.location.display_address.join(", ")}
+                        </p>
+                    </div>
+                    </div>
+                    </div>
+                    
+              
                 
-            </div>
+                
+          
                 
         )
     }
