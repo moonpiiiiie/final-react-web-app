@@ -6,6 +6,9 @@ import {findUserById} from "../Users/users-service";
 import { useNavigate, Link } from "react-router-dom";
 import {findFavoriteRestaurantsByUserId} from "../Users/favoriteRestaurant-service.js";
 import {createFollowThunk, findFollowingByFollowedThunk, unfollowThunk, findIsFollowedByIdThunk} from "./Follow/follows-thunk";
+import Avatar from '@mui/material/Avatar';
+import { deepOrange, deepPurple } from '@mui/material/colors';
+
 
 function ProfileUidScreen() {
     const {uid} = useParams();
@@ -61,7 +64,6 @@ function ProfileUidScreen() {
 
     useEffect(() => {
         loadScreen();
-
         if (currentUser) {
             isFollow();
             fetchFavoriteRestaurants();
@@ -73,6 +75,7 @@ function ProfileUidScreen() {
              {profile && (
                 <div>
                      <div>
+                         {profile.username && <Avatar sx={{ bgcolor: deepPurple[500],  width: 50, height: 50 }}>{profile.username.substring(0, 1)}</Avatar>}
                          <h1>{profile.username} Profile</h1>
                          {!isFollowed && <button className="btn btn-success" onClick={() => (currentUser ? follow() : navigate("/login"))}>Follow</button>}
                          {isFollowed && <button className="btn btn-danger"onClick={unfollow}>Unfollow</button>}
