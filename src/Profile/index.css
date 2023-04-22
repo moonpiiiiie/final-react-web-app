@@ -1,0 +1,33 @@
+body {
+    background-color: #eee;
+    font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+
+.fo-color {
+  color: black;
+  font-weight: bold;
+}
+
+.res-font {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    color: hotpink;
+}
+
+.deal-font {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    color: Violet;
+}
+
+.header-border {
+    border: 1px;
+    background-color: hsla(0, 100%, 90%, 0.5);
+    padding: 10px;
+    margin-bottom: 10px;
+}

@@ -39,14 +39,14 @@ function AdminScreen() {
     }, [users]);
 
     return (
-        <div>
-            <h1>Admin</h1>
+        <div className="container-fluid">
+            <h1 className="display-4 mt-3" style={{ fontWeight: 'bold'}}>Admin Dashboard</h1>
             <ul className="list-group">
                 {allUsers && allUsers.filter(user => user.role === "USER").map(user => {
                     return (
-                        <li key={user._id} className="list-group-item m-2">
-                           {user.canReview && <button className="btn btn-danger float-end m-1" onClick={()=>(canReviewToggle(user, false))}>Mute</button>}
-                            {!user.canReview &&<button className="btn btn-success float-end m-1" onClick={()=>(canReviewToggle(user, true))}>Unmute</button>}
+                        <li key={user._id} className="list-group-item m-2 text-secondary">
+                           {user.canReview && <button className="btn  btn-outline-danger float-end m-1" onClick={()=>(canReviewToggle(user, false))}>Mute</button>}
+                            {!user.canReview &&<button className="btn  btn-outline-success float-end m-1" onClick={()=>(canReviewToggle(user, true))}>Unmute</button>}
                             <h3>{user.username} | {user.role}</h3>
                         </li>
                     )

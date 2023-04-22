@@ -8,6 +8,7 @@ import {findFavoriteRestaurantsByUserId} from "../Users/favoriteRestaurant-servi
 import {createFollowThunk, findFollowingByFollowedThunk, unfollowThunk, findIsFollowedByIdThunk} from "./Follow/follows-thunk";
 import Avatar from '@mui/material/Avatar';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import "./index.css";
 
 
 function ProfileUidScreen() {
@@ -71,36 +72,45 @@ function ProfileUidScreen() {
     }, [currentUser, uid, isFollowed]);
 
    return(
-         <div>
+         <div className="container-fluid">
              {profile && (
                 <div>
-                     <div>
-                         {profile.username && <Avatar sx={{ bgcolor: deepPurple[500],  width: 50, height: 50 }}>{profile.username.substring(0, 1)}</Avatar>}
-                         <h1>{profile.username} Profile</h1>
-                         {!isFollowed && <button className="btn btn-success" onClick={() => (currentUser ? follow() : navigate("/login"))}>Follow</button>}
-                         {isFollowed && <button className="btn btn-danger"onClick={unfollow}>Unfollow</button>}
-                    </div>
-                    <div>
-                        <h2>Followers</h2>
-                        <ul className="list-group">
-                            {followers.map((follower) => (
-                                <li key={follower.following._id} className="list-group-item">
-                                    <Link to={`/profile/${follower.following._id}`}>{follower.following.username}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                   </div>
+                     <div className="row mt-5 header-border">
+                         <div className="col-9 d-inline-flex">
+                         {profile.username && <Avatar sx={{ bgcolor: deepPurple[500],  width: 70, height: 70 }}>{profile.username.substring(0, 1)}</Avatar>}
+                         <span className="ms-4"><h1 className="display-4">{profile.username} Profile</h1></span>
 
-                   <div>
-                   <h2>My Favorite Restaurants</h2>
-                   <ul className="list-group">
-                       {favRestaurant.map((item) => (
-                           <li className="list-group-item">
-                               <a href={'http://localhost:3000/detail/' + item.restaurantId}>
-                               <h3>{item.restaurantName}</h3>
-                               </a>
-                       </li>))}
-                   </ul>
+                         </div>
+                         <div className="col-3 mt-5">
+                         {!isFollowed && <button className="btn btn-light" onClick={() => (currentUser ? follow() : navigate("/login"))}>Follow</button>}
+                         {isFollowed && <button className="btn btn-danger"onClick={unfollow}>Unfollow</button>}
+                         </div>
+                    </div>
+                    <div className="row mt-5 text-center">
+                        <div className="col-4">
+                            <h2><i class="bi bi-person-plus me-2"></i>Followers</h2>
+                            <ul className="list-group border-round">
+                                {followers.map((follower) => (
+                                    <li key={follower.following._id} className="list-group-item">
+                                        <Link to={`/profile/${follower.following._id}`}>
+                                            <span className="fo-color">{follower.following.username}</span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                       </div>
+
+                       <div className="col-8">
+                       <h2><i class="bi bi-heart-fill text-danger me-2"></i>Favorite Restaurants</h2>
+                       <ul className="list-group rounded-10">
+                           {favRestaurant.map((item) => (
+                               <li className="list-group-item">
+                                   <a href={'http://localhost:3000/detail/' + item.restaurantId}>
+                                   <span className="res-font">{item.restaurantName}</span>
+                                   </a>
+                           </li>))}
+                       </ul>
+                      </div>
                   </div>
                </div>
              )}
