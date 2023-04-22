@@ -150,7 +150,7 @@ function ProfileScreen() {
                               <br/>
                               <div className="col-4">
                               <h2><i class="bi bi-heart-fill text-danger me-2"></i>My Favorite Restaurants</h2>
-                              <ul className="list-group text-center">
+                              <ul className="list-group">
                                   {favRestaurant.map((item) => (
                                       <li className="list-group-item">
                                           <a href={'http://localhost:3000/detail/' + item.restaurantId}>
@@ -162,7 +162,7 @@ function ProfileScreen() {
                           <br/>
                         <div className="col-4">
                         <h2><i class="bi bi-chat-left-heart"></i> My Reviews</h2>
-                        <ul className="list-group text-center">
+                        <ul className="list-group">
                                 {reviews.map((item) => (
                                 <li className="list-group-item text-secondary">
                                          <span>{item.review} <i class="bi bi-chat-left-dots"></i></span>
