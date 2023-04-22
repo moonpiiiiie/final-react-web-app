@@ -36,9 +36,13 @@ const ReviewItem = (
             <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
 
               <div class="g-mb-15">
+              <a href={'http://localhost:3000/profile/' + result.userID}>
                <Avatar id="avatar" sx={{ bgcolor: deepPurple[500],  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
-                
+                </a>
+                <a href={'http://localhost:3000/profile/' + result.userID}>
                 <h5 class="g-color-gray-dark-v1 mb-0">{result.username}</h5>
+                </a>
+                
                 <span class="g-color-gray-dark-v4 g-font-size-12">{result.date.toString().substring(0,10)}</span>
               </div>
         

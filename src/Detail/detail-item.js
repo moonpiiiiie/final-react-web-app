@@ -24,7 +24,7 @@ const DetailItem = (
             <div className="row">
                     <div className="col-md-4">
                     
-                            <img style={{borderRadius:"40px"}} class="p-3" src={result.image_url} width={300} height={300}/>
+                            <img style={{borderRadius:"40px"}} class="p-3 card-img-top" src={result.image_url}/>
                            
                             </div>
                             <div className="col-md-8">
