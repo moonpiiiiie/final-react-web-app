@@ -17,8 +17,15 @@ function LoginScreen() {
                 alert("Please enter your username and password!");
                 return;
             }
-            await dispatch(loginThunk({ username, password }));
-            navigate("/profile");
+
+            const response = await dispatch(loginThunk({ username, password }));
+            const type = response.type;
+            const status = type.split ("/")[2];
+            if (status === "rejected") {
+                alert("Username and password do not match.");
+                return;
+            }
+            navigate("/");
         } catch (err) {
             console.log(err);
         }
