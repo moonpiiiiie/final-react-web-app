@@ -25,14 +25,14 @@ function RegisterScreen() {
                     alert("Please enter all the information!");
                 } else {
                     dispatch(registerThunk({ username, password, firstName,lastName, email, role, restaurantID, restaurantName, zipcode }));
-                    navigate("/profile");
+                    navigate("/");
                 }
             } else {
                 if (username === "" || password === "" || firstName === "" || lastName === "" || email === "" || role === "" || zipcode === "") {
                     alert("Please enter all the information!");
                 } else {
                     dispatch(registerThunk({ username, password, firstName,lastName, email, role, zipcode }));
-                    navigate("/profile");
+                    navigate("/");
                 }
             }
         } catch (err) {
