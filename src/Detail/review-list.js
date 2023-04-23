@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import ReviewItem from "./review-item";
 import {useParams, Link } from 'react-router-dom';
+import {findUserById} from "../Users/users-service";
 import {profileThunk} from "../Users/users-thunks";
 import { createReviewThunk } from "../Reviews/reviews-thunks";
 import "../HomePage/index.css";
@@ -13,6 +14,9 @@ const DETAIL_URL = "http://localhost:4000/api/detail/";
     * This component is used to display restraunt.
  */
 function ReviewList() {
+    const { currentUser } = useSelector(state => state.users);
+
+    const [profile, setProfile] = useState({});
     const {id} = useParams();
     const [result, setResult] = useState([]);
     let [leaveReview, setLeaveReview] = useState('');
@@ -28,11 +32,11 @@ function ReviewList() {
           
         };
         // make sure we only run asyncData() once
-        if(Object.keys(restaurant).length === 0){
-            dispatch(profileThunk());
+        // if(Object.keys(restaurant).length === 0){
+        //     dispatch(profileThunk());
             asyncData();
-        }
-    },[]);
+        // }
+    },[id]);
  
     useEffect(() => {
         const asyncData = async () => {
@@ -42,14 +46,19 @@ function ReviewList() {
            
         };
         // make sure we only run asyncData() once
-        if(Object.keys(result).length === 0){
-            dispatch(profileThunk());
+        // if(Object.keys(result).length === 0){
+            // dispatch(profileThunk());
             asyncData();
-        }
-    },[]);
+        // }
+    },[id]);
 
-    const { currentUser } = useSelector(state => state.users);
-   
+      const fetchProfile = async () => {
+        const user = await findUserById(currentUser._id);
+        await setProfile(user);
+    };
+    useEffect(() => {
+        fetchProfile();
+    }, [currentUser]);
  
     const submitReview = () => {
         const templateReview = {
@@ -68,7 +77,7 @@ function ReviewList() {
     return (
         <>
        
-        {currentUser && currentUser.role==="USER" && currentUser.canReview ? 
+        {profile && profile.role==="USER" && profile.canReview ? 
         <div className="col-md-6 m-3">
                 <h1>Leave Your Reviews</h1>  
                 <textarea value={leaveReview} 
