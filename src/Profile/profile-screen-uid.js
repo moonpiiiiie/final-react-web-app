@@ -20,6 +20,7 @@ function ProfileUidScreen() {
     const [isFollowed, setIsFollowed] = useState(null);
     const [followers, setFollowers] = useState([]);
 
+
     const fetchProfile = async () => {
         const user = await findUserById(uid);
         await setProfile(user);
@@ -82,11 +83,14 @@ function ProfileUidScreen() {
 
                          </div>
                          <div className="col-3 mt-5">
-                         {!isFollowed && <button className="btn btn-light" onClick={() => (currentUser ? follow() : navigate("/login"))}>Follow</button>}
-                         {isFollowed && <button className="btn btn-danger"onClick={unfollow}>Unfollow</button>}
+                         {(currentUser === null || (currentUser && currentUser.role === "USER" && !isFollowed)) && <button className="btn btn-light"
+                             onClick={() => (currentUser ? follow() : navigate("/login"))}>Follow</button>}
+                         {currentUser && currentUser.role === "USER" && isFollowed && <button className="btn btn-danger"
+                             onClick={unfollow}>Unfollow</button>}
+
                          </div>
                     </div>
-                    <div className="row mt-5 text-center">
+                    <div className="row mt-5">
                         <div className="col-4">
                             <h2><i class="bi bi-person-plus me-2"></i>Followers</h2>
                             <ul className="list-group border-round">
