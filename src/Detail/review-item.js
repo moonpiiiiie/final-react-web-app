@@ -2,7 +2,8 @@ import React from "react";
 import {useSelector, useDispatch} from "react-redux";
 import { deleteReviewThunk } from "../Reviews/reviews-thunks";
 import Avatar from '@mui/material/Avatar';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import Badge from '@mui/material/Badge';
+
 
 /*
     This component is used to display the details of a single restaurant.
@@ -37,7 +38,8 @@ const ReviewItem = (
 
               <div class="g-mb-15">
               <a href={'http://localhost:3000/profile/' + result.userID}>
-               <Avatar id="avatar" sx={{ bgcolor: deepPurple[500],  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
+                
+               <Avatar id="avatar" sx={{ bgcolor: "#efce6a",  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
                 </a>
                 {currentUser && currentUser._id === result.userID ? ( <a href='http://localhost:3000/profile/'>
                 <h5 class="g-color-gray-dark-v1 mb-0">{result.username}</h5>
