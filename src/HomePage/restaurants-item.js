@@ -54,18 +54,18 @@ const RestaurantItem = (
                         </a>
                     <div className="card-body h-100">
                         <h5 className="card-title"> <a href={'http://localhost:3000/detail/' + restaurant.id}>{restaurant.name}</a></h5>
-                        <p className="card-text">
-                        <i className="bi bi-cash-coin"></i> {restaurant.price} 
+                        <p className="card-text text-secondary">
+                        <i className="bi bi-cash-coin pe-2"></i> {restaurant.price} 
                         </p>
-                        <p className="card-text">{restaurant.display_phone && (<i className="bi bi-telephone">{restaurant.display_phone}</i> )}
+                        <p className="card-text text-secondary">{restaurant.display_phone && (<i className="bi bi-telephone pe-2"> {restaurant.display_phone}</i> )}
                         
                         </p>
-                        <p className="card-text">
-                       Rating: {restaurant.rating} <span></span>
-                                    {restaurant.rating>=4? (<i class="bi bi-hand-thumbs-up-fill"></i>): ""}
+                        <p className="card-text text-secondary">
+                        {restaurant.rating>=4? (<i class="bi bi-hand-thumbs-up-fill pe-2"></i>): ""}Rating: {restaurant.rating} <span></span>
+                                   
                         </p>
-                        <p className="card-text">
-                        <i className="bi bi-geo-alt"></i> {restaurant.location.display_address.join(", ")}
+                        <p className="card-text text-secondary">
+                        <i className="bi bi-geo-alt pe-2"></i> {restaurant.location.display_address.join(", ")}
                         </p>
                     </div>
                     </div>
