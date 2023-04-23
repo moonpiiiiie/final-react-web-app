@@ -1,3 +1,12 @@
 .navigation-bar-color {
     background-color: #e3f2fd;
 }
+
+.font-style-brand {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+
+.active{
+    background-color: #0e1c36 !important;
+}

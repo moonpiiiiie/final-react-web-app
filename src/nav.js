@@ -16,17 +16,17 @@ function Nav() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
+        <nav className="navbar navbar-expand-lg bg-light font-style-brand">
             <div className="container-fluid">
                 {
                     !currentUser && (
-                        <a className="navbar-brand">Dog-Friendly Restaurants</a>
+                        <a className="navbar-brand" style={{ fontWeight: 'bold' }}>🐾 Dog-Friendly Restaurants</a>
                     )
                 }
 
                 {
                     currentUser && (
-                        <a className="navbar-brand">Hi {currentUser.username}</a>
+                    <a className="navbar-brand" style={{ fontWeight: 'bold' }}>🍱 Hi {currentUser.username}</a>
                     )
                 }
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
