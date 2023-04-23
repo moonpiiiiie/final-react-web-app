@@ -38,7 +38,7 @@ function RestaurantList() {
     return (
         <div className="">
            
-                <h1 className="ancy mb-3 mt-3 text-center" style={{ fontWeight: 'bold' }}>Restaurants nearby</h1>
+                <h1 className="ancy mb-3 mt-3 text-center" style={{ fontWeight: 'bold' }}>🐕‍🦺 Restaurants nearby</h1>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                 {
                     restaurants && restaurants.map(Restaurant =>

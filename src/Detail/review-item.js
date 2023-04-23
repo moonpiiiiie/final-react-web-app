@@ -39,9 +39,12 @@ const ReviewItem = (
               <a href={'http://localhost:3000/profile/' + result.userID}>
                <Avatar id="avatar" sx={{ bgcolor: deepPurple[500],  width: 60, height: 60 }}>{result.username.charAt(0)}</Avatar>
                 </a>
-                <a href={'http://localhost:3000/profile/' + result.userID}>
+                {currentUser && currentUser._id === result.userID ? ( <a href='http://localhost:3000/profile/'>
                 <h5 class="g-color-gray-dark-v1 mb-0">{result.username}</h5>
-                </a>
+                </a>) : <a href={'http://localhost:3000/profile/' + result.userID}>
+                <h5 class="g-color-gray-dark-v1 mb-0">{result.username}</h5>
+                </a>}
+                
                 
                 <span class="g-color-gray-dark-v4 g-font-size-12">{result.date.toString().substring(0,10)}</span>
               </div>
