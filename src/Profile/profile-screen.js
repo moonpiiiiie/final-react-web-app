@@ -179,6 +179,7 @@ function ProfileScreen() {
                     {deals && profile && profile.role === "OWNER" && (
                         <div className="border-top border-secondary p-4 mt-5">
                             <h2><i class="bi bi-emoji-sunglasses"></i> My Deals</h2>
+                            <Link to={'/detail/' + profile.restaurantID}>Go to the Restaurant</Link>
                             <ul className="list-group col-auto">
                                 {deals.map((item) => (
                                     <li className="text-info p-3">
