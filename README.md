@@ -4,6 +4,11 @@
 
 The Dog-Friendly Restaurant Finder is a full-stack web application designed to make it easier for dog owners to find dog-friendly restaurants in their area. This project aims to provide a seamless and convenient way for dog owners to discover restaurants where they can enjoy a meal or snack with their furry companions.
 
+![Home Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Detailed%20Page.png/200x150)
+![Detailed Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Home%20Page.png/200x150)
+![Regristration Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Registration%20Page.png/200x150)
+![Search Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Search%20Page.png/200x150)
+
 ## How It Works
 
 The application utilizes the Yelp API to fetch restaurant details, such as name, location, contact information, and user ratings, in JSON format. The backend server, built with Node.js, acts as an intermediary between the client-side application and the Yelp API. It handles requests from the frontend, communicates with the Yelp API to retrieve the necessary data, and sends the fetched restaurant details back to the client for display.
