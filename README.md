@@ -1,71 +1,27 @@
-# Getting Started with Create React App
+# Dog-Friendly Restaurants
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+The Dog-Friendly Restaurant Finder is a full-stack web application designed to make it easier for dog owners to find dog-friendly restaurants in their area. This project aims to provide a seamless and convenient way for dog owners to discover restaurants where they can enjoy a meal or snack with their furry companions.
 
-In the project directory, you can run:
+## How It Works
 
-### `npm start`
+The application utilizes the Yelp API to fetch restaurant details, such as name, location, contact information, and user ratings, in JSON format. The backend server, built with Node.js, acts as an intermediary between the client-side application and the Yelp API. It handles requests from the frontend, communicates with the Yelp API to retrieve the necessary data, and sends the fetched restaurant details back to the client for display.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To enhance the user experience and provide additional features, the application also leverages MongoDB as its database. MongoDB stores and manages data such as user preferences, favorite restaurants, and reviews. This enables personalized recommendations and allows users to keep track of their favorite dog-friendly dining spots.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- **Search for Dog-Friendly Restaurants**: Users can enter their location or use geolocation services to find dog-friendly restaurants in their area.
+- **Detailed Restaurant Information**: The application displays comprehensive details for each restaurant, including ratings, reviews, photos, and contact information.
+- **Favorite and Save Restaurants**: Users can mark restaurants as favorites and save them for future reference.
+- **Write and Read Reviews**: Users can leave reviews for restaurants they have visited and read reviews from other dog owners.
+- **User Authentication**: The application supports user registration and authentication, allowing users to access personalized features and securely store their preferences.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# final-react-web-app
+- **Frontend**: The client-side of the application is built using modern web technologies such as HTML, CSS, and JavaScript. Additional libraries and frameworks, such as React, may be used to enhance the user interface and interactivity.
+- **Backend**: The backend server is developed with Node.js, leveraging its lightweight and efficient nature for handling API requests and data management.
+- **API Integration**: The application integrates with the Yelp API to retrieve restaurant details, leveraging its extensive database and rich information about local businesses.
+- **Database**: MongoDB is used as the database for storing user preferences, favorite restaurants, and reviews. MongoDB's flexibility and scalability make it ideal for managing dynamic data.
+- **Deployment**: The application can be deployed on cloud platforms such as Heroku or AWS, ensuring availability and scalability.
