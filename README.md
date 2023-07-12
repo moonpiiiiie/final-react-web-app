@@ -4,10 +4,21 @@
 
 The Dog-Friendly Restaurant Finder is a full-stack web application designed to make it easier for dog owners to find dog-friendly restaurants in their area. This project aims to provide a seamless and convenient way for dog owners to discover restaurants where they can enjoy a meal or snack with their furry companions.
 
-![Home Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Detailed%20Page.png)
-![Detailed Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Home%20Page.png)
-![Regristration Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Registration%20Page.png)
-![Search Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Search%20Page.png)
+### Home Page
+
+![Home Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Detailed%20Page.png?raw=true)
+
+### Detailed Page
+
+![Detailed Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Home%20Page.png?raw=true)
+
+### Regristration Page
+
+![Regristration Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Registration%20Page.png?raw=true)
+
+### Search Page
+
+![Search Page](https://github.com/moonpiiiiie/final-react-web-app/blob/main/src/images/Search%20Page.png?raw=true)
 
 ## How It Works
 
